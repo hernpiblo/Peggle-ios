@@ -26,7 +26,7 @@ struct LevelDesignerView: View {
                         }
                     
                     ForEach(levelDesignerVM.balls, id: \.self) { ball in
-                        BallView(ball: ball, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
+                        BallView(ball: ball, geoSize: geo.size, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
                     }
                 }
             }

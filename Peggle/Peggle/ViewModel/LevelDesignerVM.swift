@@ -12,7 +12,7 @@ class LevelDesignerVM: ObservableObject {
     
     func addBall(at position: CGPoint, in size: CGSize, ballColor: BallColor) {
         
-        guard isPointInView(position, in: size, ballSize: BallView.ballSize) else { return }
+        guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { return }
         guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { return }
         
         let newBall = Ball(position: position, color: ballColor)
@@ -25,12 +25,25 @@ class LevelDesignerVM: ObservableObject {
     }
     
     
+    func updateBallPosition(_ ball : Ball, _ dragOffset : CGSize, in geoSize: CGSize) {
+        let newPosition = CGPoint(x: ball.position.x + dragOffset.width, y: ball.position.y + dragOffset.height)
+
+        guard isPointInView(newPosition, ballSize: BallView.ballSize, in: geoSize) else { return }
+        guard !isPointOverlapping(newPosition, ballSize: BallView.ballSize) else { return }
+        guard let index = balls.firstIndex(of: ball) else { return }
+        
+        var updatedBall = ball
+        updatedBall.position = newPosition
+        balls[index] = updatedBall
+    }
+    
+    
     func resetLevel() {
         balls.removeAll()
     }
     
     
-    private func isPointInView(_ point: CGPoint, in size: CGSize, ballSize: CGFloat) -> Bool {
+    private func isPointInView(_ point: CGPoint, ballSize: CGFloat, in size: CGSize) -> Bool {
         return point.x - ballSize/2 >= 0 && point.x + ballSize/2 <= size.width
             && point.y - ballSize/2 >= 0 && point.y + ballSize/2 <= size.height
     }
