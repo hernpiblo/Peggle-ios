@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ball : Hashable {
+struct Ball : Hashable, Codable {
     var position: CGPoint
     let color: BallColor
     var imageName: String {

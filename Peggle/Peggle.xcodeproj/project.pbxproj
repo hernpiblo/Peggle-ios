@@ -11,6 +11,8 @@
 		E68038BF2B6B390800B419FA /* LevelDesignerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038BE2B6B390800B419FA /* LevelDesignerVM.swift */; };
 		E68038C12B6B3BE100B419FA /* LevelDesignerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */; };
 		E68038C32B6B403A00B419FA /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C22B6B403A00B419FA /* BallView.swift */; };
+		E68038C52B6BD81B00B419FA /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C42B6BD81B00B419FA /* Level.swift */; };
+		E68038C72B6BD9F900B419FA /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C62B6BD9F900B419FA /* LevelManager.swift */; };
 		E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE81BE2B69586E00D3E120 /* Extensions.swift */; };
 		E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70C932B60A77D00996E0A /* PeggleApp.swift */; };
 		E6F70C982B60A77F00996E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C972B60A77F00996E0A /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		E68038BE2B6B390800B419FA /* LevelDesignerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerVM.swift; sourceTree = "<group>"; };
 		E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerView.swift; sourceTree = "<group>"; };
 		E68038C22B6B403A00B419FA /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		E68038C42B6BD81B00B419FA /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		E68038C62B6BD9F900B419FA /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		E6DE81BE2B69586E00D3E120 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E6F70C902B60A77D00996E0A /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F70C932B60A77D00996E0A /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				E68038BE2B6B390800B419FA /* LevelDesignerVM.swift */,
+				E68038C62B6BD9F900B419FA /* LevelManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				E6F70CC52B60C98400996E0A /* Ball.swift */,
+				E68038C42B6BD81B00B419FA /* Level.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,11 +333,13 @@
 				E68038C12B6B3BE100B419FA /* LevelDesignerView.swift in Sources */,
 				E6F70CDC2B62443100996E0A /* ControlsView.swift in Sources */,
 				E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */,
+				E68038C72B6BD9F900B419FA /* LevelManager.swift in Sources */,
 				E68038C32B6B403A00B419FA /* BallView.swift in Sources */,
 				E6F70CC62B60C98400996E0A /* Ball.swift in Sources */,
 				E6F70CD02B60CF5500996E0A /* SelectorsView.swift in Sources */,
 				E68038BF2B6B390800B419FA /* LevelDesignerVM.swift in Sources */,
 				E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */,
+				E68038C52B6BD81B00B419FA /* Level.swift in Sources */,
 				E68038BC2B6B2F7E00B419FA /* BallColorEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,8 +9,12 @@ import SwiftUI
 
 struct ControlsView: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @State var levelNameInput : String = "My Level #1"
-
+    @State var levelNameInput : String = ""
+    @State var savedLevelNames : [String] = []
+    @State var saveLevelSuccessful : Bool = false
+    @State var isLevelNameBlank : Bool = false
+    @State var isEmptyBoard : Bool = false
+    
     var body: some View {
         HStack() {
             TextField("Enter a level name", text: $levelNameInput)
@@ -20,44 +24,72 @@ struct ControlsView: View {
                         .strokeBorder(Color.black, style: StrokeStyle(lineWidth: 1.0))
                 )
             
+            
             Button("SAVE") {
-                saveLevel()
+                if levelNameInput.isEmpty {
+                    print("Level Name empty")
+                    isLevelNameBlank = true
+                } else if levelDesignerVM.isEmpty() {
+                    print("No balls")
+                    isEmptyBoard = true
+                } else {
+                    print("Attempting to save...")
+                    saveLevelSuccessful = levelDesignerVM.saveLevel(levelNameInput)
+                }
             }
             .padding()
             
-            Button("LOAD") {
-                loadLevel()
+            Text("")
+                .alert(isPresented: $isLevelNameBlank, content: {
+                    Alert(title: Text("Level name cannot be blank"))
+                })
+                .hidden()
+            
+            Text("")
+                .alert(isPresented: $isEmptyBoard, content: {
+                    Alert(title: Text("Place at least 1 ball"))
+                })
+                .hidden()
+            
+            Text("")
+                .alert(isPresented: $saveLevelSuccessful, content: {
+                    Alert(title: Text("Level saved!"))
+                })
+                .hidden()
+            
+            
+            Menu("LOAD") {
+                ForEach(savedLevelNames, id: \.self) { levelName in
+                    Button(levelName) {
+                        print("Loading level: \(levelName)")
+                        if levelDesignerVM.loadLevel(levelName){
+                            levelNameInput = levelName
+                        }
+                    }
+                }
+            }
+            .onTapGesture {
+                savedLevelNames = LevelManager.listAllLevels()
+            }
+            .onAppear() {
+                savedLevelNames = LevelManager.listAllLevels()
             }
             .padding()
+            
             
             Button("RESET") {
-                resetLevel()
+                levelDesignerVM.resetLevel()
             }
             .padding()
             
+            
             Button("START") {
-                startLevel()
+                
             }
             .padding()
         }
         .padding(20)
         .background(.yellow)
-    }
-    
-    func saveLevel() {
-        
-    }
-    
-    func loadLevel() {
-        
-    }
-    
-    func resetLevel() {
-        levelDesignerVM.resetLevel()
-    }
-    
-    func startLevel() {
-        
     }
 }
 
