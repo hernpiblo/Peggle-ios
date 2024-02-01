@@ -7,7 +7,7 @@ opt_in_rules:
   - attributes
   - closure_body_length
   - closure_end_indentation
-  - closure_spacing
+#  - closure_spacing
   - collection_alignment
   - conditional_returns_on_newline
   - contains_over_filter_count

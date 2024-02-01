@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct PeggleApp: App {
+    @StateObject var levelDesignerVM = LevelDesignerVM()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LevelDesignerView(levelDesignerVM: levelDesignerVM)
         }
     }
 }

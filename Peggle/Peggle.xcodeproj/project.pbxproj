@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E68038BC2B6B2F7E00B419FA /* BallColorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038BB2B6B2F7E00B419FA /* BallColorEnum.swift */; };
+		E68038BF2B6B390800B419FA /* LevelDesignerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038BE2B6B390800B419FA /* LevelDesignerVM.swift */; };
+		E68038C12B6B3BE100B419FA /* LevelDesignerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */; };
+		E68038C32B6B403A00B419FA /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C22B6B403A00B419FA /* BallView.swift */; };
+		E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE81BE2B69586E00D3E120 /* Extensions.swift */; };
 		E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70C932B60A77D00996E0A /* PeggleApp.swift */; };
-		E6F70C962B60A77D00996E0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70C952B60A77D00996E0A /* ContentView.swift */; };
 		E6F70C982B60A77F00996E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C972B60A77F00996E0A /* Assets.xcassets */; };
 		E6F70C9C2B60A77F00996E0A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C9B2B60A77F00996E0A /* Preview Assets.xcassets */; };
 		E6F70CA62B60A77F00996E0A /* PeggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70CA52B60A77F00996E0A /* PeggleTests.swift */; };
 		E6F70CB02B60A77F00996E0A /* PeggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70CAF2B60A77F00996E0A /* PeggleUITests.swift */; };
 		E6F70CB22B60A77F00996E0A /* PeggleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70CB12B60A77F00996E0A /* PeggleUITestsLaunchTests.swift */; };
+		E6F70CC22B60B11100996E0A /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70CC02B60B11100996E0A /* assets */; };
+		E6F70CC32B60B11100996E0A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E6F70CC12B60B11100996E0A /* README.md */; };
+		E6F70CC62B60C98400996E0A /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70CC52B60C98400996E0A /* Ball.swift */; };
+		E6F70CD02B60CF5500996E0A /* SelectorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70CCF2B60CF5500996E0A /* SelectorsView.swift */; };
+		E6F70CDC2B62443100996E0A /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70CDB2B62443100996E0A /* ControlsView.swift */; };
+		E6F70CDF2B6254A400996E0A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E6F70CDE2B6254A400996E0A /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E68038BB2B6B2F7E00B419FA /* BallColorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallColorEnum.swift; sourceTree = "<group>"; };
+		E68038BE2B6B390800B419FA /* LevelDesignerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerVM.swift; sourceTree = "<group>"; };
+		E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerView.swift; sourceTree = "<group>"; };
+		E68038C22B6B403A00B419FA /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		E6DE81BE2B69586E00D3E120 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E6F70C902B60A77D00996E0A /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F70C932B60A77D00996E0A /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
-		E6F70C952B60A77D00996E0A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E6F70C972B60A77F00996E0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6F70C992B60A77F00996E0A /* Peggle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle.entitlements; sourceTree = "<group>"; };
 		E6F70C9B2B60A77F00996E0A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,6 +59,12 @@
 		E6F70CAB2B60A77F00996E0A /* PeggleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F70CAF2B60A77F00996E0A /* PeggleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleUITests.swift; sourceTree = "<group>"; };
 		E6F70CB12B60A77F00996E0A /* PeggleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E6F70CC02B60B11100996E0A /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
+		E6F70CC12B60B11100996E0A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		E6F70CC52B60C98400996E0A /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		E6F70CCF2B60CF5500996E0A /* SelectorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorsView.swift; sourceTree = "<group>"; };
+		E6F70CDB2B62443100996E0A /* ControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
+		E6F70CDE2B6254A400996E0A /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,12 +92,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E68038BD2B6B38D300B419FA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E68038BE2B6B390800B419FA /* LevelDesignerVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E6F70C872B60A77D00996E0A = {
 			isa = PBXGroup;
 			children = (
 				E6F70C922B60A77D00996E0A /* Peggle */,
 				E6F70CA42B60A77F00996E0A /* PeggleTests */,
 				E6F70CAE2B60A77F00996E0A /* PeggleUITests */,
+				E6F70CDE2B6254A400996E0A /* .swiftlint.yml */,
 				E6F70C912B60A77D00996E0A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,8 +125,13 @@
 			isa = PBXGroup;
 			children = (
 				E6F70C932B60A77D00996E0A /* PeggleApp.swift */,
-				E6F70C952B60A77D00996E0A /* ContentView.swift */,
+				E6DE81BE2B69586E00D3E120 /* Extensions.swift */,
+				E6F70CC42B60C10D00996E0A /* Model */,
+				E6F70CC92B60CB7100996E0A /* View */,
+				E68038BD2B6B38D300B419FA /* ViewModel */,
 				E6F70C972B60A77F00996E0A /* Assets.xcassets */,
+				E6F70CC02B60B11100996E0A /* assets */,
+				E6F70CC12B60B11100996E0A /* README.md */,
 				E6F70C992B60A77F00996E0A /* Peggle.entitlements */,
 				E6F70C9A2B60A77F00996E0A /* Preview Content */,
 			);
@@ -127,6 +161,34 @@
 				E6F70CB12B60A77F00996E0A /* PeggleUITestsLaunchTests.swift */,
 			);
 			path = PeggleUITests;
+			sourceTree = "<group>";
+		};
+		E6F70CC42B60C10D00996E0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E6F70CC52B60C98400996E0A /* Ball.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E6F70CC92B60CB7100996E0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E6F70CCE2B60CF3700996E0A /* LevelDesigner */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E6F70CCE2B60CF3700996E0A /* LevelDesigner */ = {
+			isa = PBXGroup;
+			children = (
+				E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */,
+				E6F70CDB2B62443100996E0A /* ControlsView.swift */,
+				E6F70CCF2B60CF5500996E0A /* SelectorsView.swift */,
+				E68038C22B6B403A00B419FA /* BallView.swift */,
+				E68038BB2B6B2F7E00B419FA /* BallColorEnum.swift */,
+			);
+			path = LevelDesigner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +295,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F70CDF2B6254A400996E0A /* .swiftlint.yml in Resources */,
+				E6F70CC22B60B11100996E0A /* assets in Resources */,
 				E6F70C9C2B60A77F00996E0A /* Preview Assets.xcassets in Resources */,
+				E6F70CC32B60B11100996E0A /* README.md in Resources */,
 				E6F70C982B60A77F00996E0A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,8 +324,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6F70C962B60A77D00996E0A /* ContentView.swift in Sources */,
+				E68038C12B6B3BE100B419FA /* LevelDesignerView.swift in Sources */,
+				E6F70CDC2B62443100996E0A /* ControlsView.swift in Sources */,
+				E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */,
+				E68038C32B6B403A00B419FA /* BallView.swift in Sources */,
+				E6F70CC62B60C98400996E0A /* Ball.swift in Sources */,
+				E6F70CD02B60CF5500996E0A /* SelectorsView.swift in Sources */,
+				E68038BF2B6B390800B419FA /* LevelDesignerVM.swift in Sources */,
 				E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */,
+				E68038BC2B6B2F7E00B419FA /* BallColorEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,10 +502,11 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -468,10 +541,11 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";

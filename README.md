@@ -1,9 +1,9 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/GTp3VxVz)
 # CS3217 Problem Set 2
 
-**Name:** Your name
+**Name:** Lee Hern Ping
 
-**Matric No:** Your matric no
+**Matric No:** A0217990W
 
 ## Tips
 1. CS3217's docs is at https://cs3217.github.io/cs3217-docs. Do visit the docs often, as
@@ -23,9 +23,16 @@ If you have changed the specifications in any way, please write your
 justification here. Otherwise, you may discard this section.
 
 ## Dev Guide
-You may put your dev guide either in this section, or in a new file entirely.
-You are encouraged to include diagrams where appropriate in order to enhance
-your guide.
+
+### Model
+
+1. Ball - Protocol
+
+- Blue Ball 
+
+- Orange Ball
+
+
 
 ## Tests
 If you decide to write how you are going to do your tests instead of writing
