@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct BallView: View {
-    static let ballSize : CGFloat = 50
-    let ball : Ball
-    let geoSize : CGSize
+    static let ballSize: CGFloat = 50
+    let ball: Ball
+    let geoSize: CGSize
     @ObservedObject var levelDesignerVM: LevelDesignerVM
     @Binding var isEraseMode: Bool
     @State private var dragOffset: CGSize = .zero
@@ -41,6 +41,6 @@ struct BallView: View {
     }
 }
 
-//#Preview {
-//    BallView(ball: Ball(position: CGPoint(x: 10, y: 10), color: .blue))
-//}
+// #Preview {
+//     BallView(ball: Ball(position: CGPoint(x: 10, y: 10), color: .blue))
+// }

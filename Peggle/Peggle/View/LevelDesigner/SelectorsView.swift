@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct SelectorsView: View {
-    
-    @Binding var currentColor : BallColor
-    @Binding var isEraseMode : Bool
-    
+
+    @Binding var currentColor: BallColor
+    @Binding var isEraseMode: Bool
+
     var body: some View {
-        HStack() {
+        HStack {
             ForEach(BallColor.allCases, id: \.self) { ballColor in
                 SelectorButton(currentColor: $currentColor, ballColor: ballColor, isEraseMode: $isEraseMode)
             }
-            
+
             Spacer()
-            
+
             EraserButton(currentColor: $currentColor, isEraseMode: $isEraseMode)
         }
         .padding(20)
@@ -28,10 +28,10 @@ struct SelectorsView: View {
 }
 
 struct SelectorButton: View {
-    @Binding var currentColor : BallColor
-    let ballColor : BallColor
-    @Binding var isEraseMode : Bool
-    
+    @Binding var currentColor: BallColor
+    let ballColor: BallColor
+    @Binding var isEraseMode: Bool
+
     var body: some View {
         Button(action: {
             currentColor = ballColor
@@ -52,8 +52,8 @@ struct SelectorButton: View {
 }
 
 struct EraserButton: View {
-    @Binding var currentColor : BallColor
-    @Binding var isEraseMode : Bool
+    @Binding var currentColor: BallColor
+    @Binding var isEraseMode: Bool
 
     var body: some View {
         Button(action: {
@@ -73,6 +73,6 @@ struct EraserButton: View {
     }
 }
 
-//#Preview {
-//    SelectorsView()
-//}
+// #Preview {
+//     SelectorsView()
+// }

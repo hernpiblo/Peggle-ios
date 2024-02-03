@@ -19,8 +19,30 @@
 3. Do not burn out. Have fun!
 
 ## Notes
-If you have changed the specifications in any way, please write your
-justification here. Otherwise, you may discard this section.
+SwiftLint: Turned off
+- conditional_returns_on_newline: 
+I feel that 
+        guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { return }
+        guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { return }
+is easier to parse than
+        guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { 
+            return 
+        }
+        guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { 
+            return 
+        }
+
+- file_name:
+I use XXXEnum.swift to name my enum files but the enums themselves are just named XXX
+ 
+- vertical_whitespace:
+I use 2 newlines between my functions for readability
+
+- implicit_return
+Even if it is a one statement function, seeing the word 'return' helps with readability
+
+
+
 
 ## Dev Guide
 

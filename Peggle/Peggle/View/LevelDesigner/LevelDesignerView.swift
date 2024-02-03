@@ -10,10 +10,10 @@ import SwiftUI
 struct LevelDesignerView: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
     @State private var currentColor: BallColor = .blue
-    @State var isEraseMode: Bool = false
-    
+    @State var isEraseMode = false
+
     var body: some View {
-        VStack(spacing:0) {
+        VStack(spacing: 0) {
             GeometryReader { geo in
                 ZStack {
                     Image("background")
@@ -24,9 +24,10 @@ struct LevelDesignerView: View {
                             guard !isEraseMode else { return }
                             levelDesignerVM.addBall(at: tapLocation, in: geo.size, ballColor: currentColor)
                         }
-                    
+
                     ForEach(levelDesignerVM.balls, id: \.self) { ball in
-                        BallView(ball: ball, geoSize: geo.size, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
+                        BallView(ball: ball, geoSize: geo.size,
+                                 levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
                     }
                 }
             }
@@ -37,8 +38,6 @@ struct LevelDesignerView: View {
     }
 }
 
-
-    
 #Preview {
     LevelDesignerView(levelDesignerVM: LevelDesignerVM())
 }

@@ -28,6 +28,20 @@
 		E6F70CDF2B6254A400996E0A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E6F70CDE2B6254A400996E0A /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		E6842CE82B6EA3C60013D0A7 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		E6F70CA22B60A77F00996E0A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -207,8 +221,10 @@
 				E6F70C8C2B60A77D00996E0A /* Sources */,
 				E6F70C8D2B60A77D00996E0A /* Frameworks */,
 				E6F70C8E2B60A77D00996E0A /* Resources */,
+				E6842CE72B6E9D3C0013D0A7 /* SwiftLint */,
 			);
 			buildRules = (
+				E6842CE82B6EA3C60013D0A7 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -324,6 +340,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E6842CE72B6E9D3C0013D0A7 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E6F70C8C2B60A77D00996E0A /* Sources */ = {
@@ -503,6 +540,7 @@
 				DEVELOPMENT_TEAM = SD7C4F3U94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -542,6 +580,7 @@
 				DEVELOPMENT_TEAM = SD7C4F3U94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;

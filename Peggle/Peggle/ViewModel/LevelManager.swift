@@ -22,12 +22,13 @@ class LevelManager {
         }
     }
 
+
     static func loadLevel(levelName: String) -> Level? {
         let fileURL = getFileURL(levelName)
         if let data = try? Data(contentsOf: fileURL) {
             let decoder = JSONDecoder()
             do {
-                let level : Level = try decoder.decode(Level.self, from: data)
+                let level: Level = try decoder.decode(Level.self, from: data)
                 print("Level \(levelName) loaded successfully.")
                 return level
             } catch {
@@ -36,11 +37,13 @@ class LevelManager {
         }
         return nil
     }
-    
+
+
     static func listAllLevels() -> [String] {
         let documentsURL = getDirectory()
         do {
-            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            let fileURLs = try FileManager.default
+                .contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
             let levelNames = fileURLs
                 .filter { $0.pathExtension == "json" }
                 .map { $0.deletingPathExtension().lastPathComponent }
@@ -51,11 +54,13 @@ class LevelManager {
         }
     }
 
-    private static func getFileURL(_ levelName : String) -> URL {
+
+    private static func getFileURL(_ levelName: String) -> URL {
         let directory = getDirectory()
         return directory.appendingPathComponent("\(levelName).json")
     }
-    
+
+
     private static func getDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
