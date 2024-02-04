@@ -8,11 +8,15 @@
 import SwiftUI
 
 class LevelDesignerVM: ObservableObject {
-    @Published var balls: [Ball] = []
+    @Published private var balls: [Ball] = []
 
     // === Ball ===
-    func addBall(at position: CGPoint, in size: CGSize, ballColor: BallColor) {
+    func getBalls() -> [Ball] {
+        return balls
+    }
 
+
+    func addBall(at position: CGPoint, in size: CGSize, ballColor: BallColor) {
         guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { return }
         guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { return }
 
@@ -38,6 +42,7 @@ class LevelDesignerVM: ObservableObject {
         balls[index] = updatedBall
     }
 
+
     // === Level ===
     func resetLevel() {
         balls.removeAll()
@@ -58,6 +63,11 @@ class LevelDesignerVM: ObservableObject {
             return true
         }
         return false
+    }
+
+
+    func checkLevelNameExist(_ levelName: String) -> Bool {
+        return LevelManager.checkLevelNameExist(levelName)
     }
 
 

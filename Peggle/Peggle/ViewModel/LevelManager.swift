@@ -14,7 +14,6 @@ class LevelManager {
             let data = try encoder.encode(level)
             let fileURL = getFileURL(level.name)
             try data.write(to: fileURL)
-            print("Level \(level.name) saved successfully.")
             return true
         } catch {
             print("Error saving level \(level.name): \(error.localizedDescription)")
@@ -29,13 +28,18 @@ class LevelManager {
             let decoder = JSONDecoder()
             do {
                 let level: Level = try decoder.decode(Level.self, from: data)
-                print("Level \(levelName) loaded successfully.")
                 return level
             } catch {
                 print("Error decoding level \(levelName): \(error.localizedDescription)")
+                return nil
             }
         }
         return nil
+    }
+
+
+    static func checkLevelNameExist(_ levelName: String) -> Bool {
+        return listAllLevels().contains(levelName)
     }
 
 
@@ -56,8 +60,7 @@ class LevelManager {
 
 
     private static func getFileURL(_ levelName: String) -> URL {
-        let directory = getDirectory()
-        return directory.appendingPathComponent("\(levelName).json")
+        return getDirectory().appendingPathComponent("\(levelName).json")
     }
 
 

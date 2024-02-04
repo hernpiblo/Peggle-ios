@@ -13,6 +13,8 @@
 		E68038C32B6B403A00B419FA /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C22B6B403A00B419FA /* BallView.swift */; };
 		E68038C52B6BD81B00B419FA /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C42B6BD81B00B419FA /* Level.swift */; };
 		E68038C72B6BD9F900B419FA /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C62B6BD9F900B419FA /* LevelManager.swift */; };
+		E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */; };
+		E6842CEF2B6F357A0013D0A7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CEE2B6F357A0013D0A7 /* Constants.swift */; };
 		E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE81BE2B69586E00D3E120 /* Extensions.swift */; };
 		E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70C932B60A77D00996E0A /* PeggleApp.swift */; };
 		E6F70C982B60A77F00996E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C972B60A77F00996E0A /* Assets.xcassets */; };
@@ -66,6 +68,8 @@
 		E68038C22B6B403A00B419FA /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 		E68038C42B6BD81B00B419FA /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		E68038C62B6BD9F900B419FA /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
+		E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		E6842CEE2B6F357A0013D0A7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E6DE81BE2B69586E00D3E120 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E6F70C902B60A77D00996E0A /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F70C932B60A77D00996E0A /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			children = (
 				E6F70C932B60A77D00996E0A /* PeggleApp.swift */,
 				E6DE81BE2B69586E00D3E120 /* Extensions.swift */,
+				E6842CEE2B6F357A0013D0A7 /* Constants.swift */,
 				E6F70CC42B60C10D00996E0A /* Model */,
 				E6F70CC92B60CB7100996E0A /* View */,
 				E68038BD2B6B38D300B419FA /* ViewModel */,
@@ -203,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */,
+				E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */,
 				E6F70CDB2B62443100996E0A /* ControlsView.swift */,
 				E6F70CCF2B60CF5500996E0A /* SelectorsView.swift */,
 				E68038C22B6B403A00B419FA /* BallView.swift */,
@@ -374,8 +380,10 @@
 				E68038C32B6B403A00B419FA /* BallView.swift in Sources */,
 				E6F70CC62B60C98400996E0A /* Ball.swift in Sources */,
 				E6F70CD02B60CF5500996E0A /* SelectorsView.swift in Sources */,
+				E6842CEF2B6F357A0013D0A7 /* Constants.swift in Sources */,
 				E68038BF2B6B390800B419FA /* LevelDesignerVM.swift in Sources */,
 				E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */,
+				E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */,
 				E68038C52B6BD81B00B419FA /* Level.swift in Sources */,
 				E68038BC2B6B2F7E00B419FA /* BallColorEnum.swift in Sources */,
 			);

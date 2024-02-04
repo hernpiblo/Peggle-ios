@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SelectorsView: View {
-
     @Binding var currentColor: BallColor
     @Binding var isEraseMode: Bool
 
@@ -17,17 +16,15 @@ struct SelectorsView: View {
             ForEach(BallColor.allCases, id: \.self) { ballColor in
                 SelectorButton(currentColor: $currentColor, ballColor: ballColor, isEraseMode: $isEraseMode)
             }
-
             Spacer()
-
             EraserButton(currentColor: $currentColor, isEraseMode: $isEraseMode)
         }
         .padding(20)
-        .background(.green)
     }
 }
 
-struct SelectorButton: View {
+
+private struct SelectorButton: View {
     @Binding var currentColor: BallColor
     let ballColor: BallColor
     @Binding var isEraseMode: Bool
@@ -51,7 +48,8 @@ struct SelectorButton: View {
     }
 }
 
-struct EraserButton: View {
+
+private struct EraserButton: View {
     @Binding var currentColor: BallColor
     @Binding var isEraseMode: Bool
 
@@ -59,7 +57,7 @@ struct EraserButton: View {
         Button(action: {
             isEraseMode = true
         }) {
-            Image("eraser")
+            Image(Constants.ImageName.ERASER)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
@@ -72,7 +70,3 @@ struct EraserButton: View {
         }
     }
 }
-
-// #Preview {
-//     SelectorsView()
-// }

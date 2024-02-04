@@ -14,23 +14,7 @@ struct LevelDesignerView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            GeometryReader { geo in
-                ZStack {
-                    Image("background")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: geo.size.width, height: geo.size.height)
-                        .onTapGesture { tapLocation in
-                            guard !isEraseMode else { return }
-                            levelDesignerVM.addBall(at: tapLocation, in: geo.size, ballColor: currentColor)
-                        }
-
-                    ForEach(levelDesignerVM.balls, id: \.self) { ball in
-                        BallView(ball: ball, geoSize: geo.size,
-                                 levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
-                    }
-                }
-            }
+            BoardView(levelDesignerVM: levelDesignerVM, currentColor: $currentColor, isEraseMode: $isEraseMode)
             ControlsView(levelDesignerVM: levelDesignerVM)
             SelectorsView(currentColor: $currentColor, isEraseMode: $isEraseMode)
         }

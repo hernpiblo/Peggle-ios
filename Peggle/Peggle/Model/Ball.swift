@@ -17,9 +17,9 @@ struct Ball: Hashable, Codable {
     static func getImageName(_ color: BallColor) -> String {
         switch color {
         case .blue:
-            return "ball-blue"
+            return Constants.ImageName.BALL_BLUE
         case .orange:
-            return "ball-orange"
+            return Constants.ImageName.BALL_ORANGE
         }
     }
 }

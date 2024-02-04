@@ -21,26 +21,31 @@ struct BallView: View {
             .frame(width: BallView.ballSize, height: BallView.ballSize)
             .position(ball.position)
             .offset(x: dragOffset.width, y: dragOffset.height)
-            .onTapGesture {
-                guard isEraseMode else { return }
-                levelDesignerVM.removeBall(ball)
+            .onTapGesture { onTap() }
+            .onLongPressGesture(minimumDuration: 0.5, perform: { onLongPress() })
+            .gesture(onDrag())
+    }
+
+
+    private func onTap() {
+        guard isEraseMode else { return }
+        levelDesignerVM.removeBall(ball)
+    }
+
+
+    private func onLongPress() {
+        levelDesignerVM.removeBall(ball)
+    }
+
+
+    private func onDrag() -> _EndedGesture<_ChangedGesture<DragGesture>> {
+        return DragGesture(coordinateSpace: .global)
+            .onChanged { value in
+                dragOffset = value.translation
             }
-            .onLongPressGesture(minimumDuration: 0.5, perform: {
-                levelDesignerVM.removeBall(ball)
-            })
-            .gesture(
-                DragGesture(coordinateSpace: .global)
-                    .onChanged { value in
-                        dragOffset = value.translation
-                    }
-                    .onEnded { value in
-                        levelDesignerVM.updateBallPosition(ball, value.translation, in: geoSize)
-                        dragOffset = .zero
-                    }
-            )
+            .onEnded { value in
+                levelDesignerVM.updateBallPosition(ball, value.translation, in: geoSize)
+                dragOffset = .zero
+            }
     }
 }
-
-// #Preview {
-//     BallView(ball: Ball(position: CGPoint(x: 10, y: 10), color: .blue))
-// }
