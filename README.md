@@ -20,17 +20,23 @@
 
 ## Notes
 SwiftLint: Turned off
+
 - conditional_returns_on_newline: 
 I feel that 
+```
         guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { return }
         guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { return }
+```
 is easier to parse than
+```
         guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { 
-            return 
+            return
         }
+
         guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { 
             return 
         }
+```
 
 - file_name:
 I use XXXEnum.swift to name my enum files but the enums themselves are just named XXX
