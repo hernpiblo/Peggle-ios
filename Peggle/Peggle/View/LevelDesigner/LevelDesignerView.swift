@@ -10,7 +10,7 @@ import SwiftUI
 struct LevelDesignerView: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
     @State private var currentColor: BallColor = .blue
-    @State var isEraseMode = false
+    @State private var isEraseMode = false
 
     var body: some View {
         VStack(spacing: 0) {

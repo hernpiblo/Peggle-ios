@@ -9,10 +9,26 @@ import Foundation
 
 struct Ball: Hashable, Codable {
     var position: CGPoint
-    let color: BallColor
-    var imageName: String {
+    private let color: BallColor
+    private var imageName: String {
         Ball.getImageName(color)
     }
+
+    init(position: CGPoint, color: BallColor) {
+        self.position = position
+        self.color = color
+    }
+
+
+    func getColor() -> BallColor {
+        return color
+    }
+
+
+    func getImageName() -> String {
+        return Ball.getImageName(color)
+    }
+
 
     static func getImageName(_ color: BallColor) -> String {
         switch color {

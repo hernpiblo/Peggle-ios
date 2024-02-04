@@ -16,7 +16,7 @@ struct BallView: View {
     @State private var dragOffset: CGSize = .zero
 
     var body: some View {
-        Image(ball.imageName)
+        Image(ball.getImageName())
             .resizable()
             .frame(width: BallView.ballSize, height: BallView.ballSize)
             .position(ball.position)

@@ -8,11 +8,11 @@
 import SwiftUI
 
 class LevelDesignerVM: ObservableObject {
-    @Published private var balls: [Ball] = []
+    @Published private var level = Level()
 
     // === Ball ===
     func getBalls() -> [Ball] {
-        return balls
+        return level.getBalls()
     }
 
 
@@ -21,58 +21,43 @@ class LevelDesignerVM: ObservableObject {
         guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { return }
 
         let newBall = Ball(position: position, color: ballColor)
-        balls.append(newBall)
+        level.addBall(newBall)
     }
 
 
     func removeBall(_ ball: Ball) {
-        balls.removeAll(where: { $0 == ball })
+        level.removeBall(ball)
     }
 
 
     func updateBallPosition(_ ball: Ball, _ dragOffset: CGSize, in geoSize: CGSize) {
         let newPosition = CGPoint(x: ball.position.x + dragOffset.width, y: ball.position.y + dragOffset.height)
-
         guard isPointInView(newPosition, ballSize: BallView.ballSize, in: geoSize) else { return }
         guard !isPointOverlapping(newPosition, ballSize: BallView.ballSize) else { return }
-        guard let index = balls.firstIndex(of: ball) else { return }
-
-        var updatedBall = ball
-        updatedBall.position = newPosition
-        balls[index] = updatedBall
+        level.updateBallPosition(ball, to: newPosition)
     }
 
 
     // === Level ===
     func resetLevel() {
-        balls.removeAll()
+        level.resetLevel()
     }
 
 
     func saveLevel(_ levelName: String) -> Bool {
-        let savedLevelNames: [String] = LevelManager.listAllLevels()
-        guard !savedLevelNames.contains(levelName) else { return false }
-        let newLevel = Level(name: levelName, balls: balls)
-        return LevelManager.saveLevel(newLevel)
+        return level.saveLevel(levelName)
     }
 
 
     func loadLevel(_ levelName: String) -> Bool {
-        if let level: Level = LevelManager.loadLevel(levelName: levelName) {
-            balls = level.balls
-            return true
-        }
-        return false
-    }
-
-
-    func checkLevelNameExist(_ levelName: String) -> Bool {
-        return LevelManager.checkLevelNameExist(levelName)
+        guard let level: Level = LevelManager.loadLevel(levelName: levelName) else { return false }
+        self.level = level
+        return true
     }
 
 
     func isEmpty() -> Bool {
-        return balls.isEmpty
+        return level.isEmpty()
     }
 
 
@@ -83,11 +68,6 @@ class LevelDesignerVM: ObservableObject {
 
 
     private func isPointOverlapping(_ point: CGPoint, ballSize: CGFloat) -> Bool {
-        for ball in balls {
-            if abs(ball.position.x - point.x) < ballSize && abs(ball.position.y - point.y) < ballSize {
-                return true
-            }
-        }
-        return false
+        return level.isPointOverlapping(point, ballSize)
     }
 }

@@ -9,37 +9,34 @@ import SwiftUI
 
 struct ControlsView: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @State var levelNameInput: String = ""
-    @State var savedLevelNames: [String] = []
-    @State var isLevelNameBlank = false
-    @State var isLevelNameExist = false
-    @State var isEmptyBoard = false
-    @State var saveLevelSuccessful = false
+    @State private var levelName: String = ""
+    @State private var savedLevelNames: [String] = []
+    @State private var isLevelNameBlank = false
+    @State private var isEmptyBoard = false
+    @State private var saveLevelSuccessful = false
 
     var body: some View {
         HStack {
-            LevelNameTextBox(levelNameInput: $levelNameInput)
+            LevelNameTextBox(levelName: $levelName)
 
             SaveButton(levelDesignerVM: levelDesignerVM,
-                       levelNameInput: $levelNameInput,
-                       savedLevelNames: $savedLevelNames,
+                       levelName: $levelName,
                        isLevelNameBlank: $isLevelNameBlank,
-                       isLevelNameExist: $isLevelNameExist,
                        isEmptyBoard: $isEmptyBoard,
                        saveLevelSuccessful: $saveLevelSuccessful)
 
             LoadButton(levelDesignerVM: levelDesignerVM,
-                       levelNameInput: $levelNameInput,
+                       levelName: $levelName,
                        savedLevelNames: $savedLevelNames)
 
-            ResetButton(levelDesignerVM: levelDesignerVM, levelNameInput: $levelNameInput)
+            ResetButton(levelDesignerVM: levelDesignerVM, levelName: $levelName)
 
             StartButton()
 
             Alerts(isLevelNameBlank: $isLevelNameBlank,
-                   isLevelNameExist: $isLevelNameExist,
                    isEmptyBoard: $isEmptyBoard,
-                   saveLevelSuccessful: $saveLevelSuccessful)
+                   saveLevelSuccessful: $saveLevelSuccessful,
+                   levelName: $levelName)
         }
         .padding(20)
     }
@@ -47,10 +44,10 @@ struct ControlsView: View {
 
 
 private struct LevelNameTextBox: View {
-    @Binding var levelNameInput: String
+    @Binding var levelName: String
 
     var body: some View {
-        TextField("Enter a level name", text: $levelNameInput)
+        TextField("Enter a level name", text: $levelName)
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 10.0)
@@ -62,23 +59,19 @@ private struct LevelNameTextBox: View {
 
 private struct SaveButton: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @Binding var levelNameInput: String
-    @Binding var savedLevelNames: [String]
+    @Binding var levelName: String
     @Binding var isLevelNameBlank: Bool
-    @Binding var isLevelNameExist: Bool
     @Binding var isEmptyBoard: Bool
     @Binding var saveLevelSuccessful: Bool
 
     var body: some View {
         Button(Constants.ButtonText.SAVE) {
-            if levelNameInput.isEmpty {
+            if levelName.isEmpty {
                 isLevelNameBlank = true
             } else if levelDesignerVM.isEmpty() {
                 isEmptyBoard = true
-            } else if levelDesignerVM.checkLevelNameExist(levelNameInput) {
-                isLevelNameExist = true
             } else {
-                saveLevelSuccessful = levelDesignerVM.saveLevel(levelNameInput)
+                saveLevelSuccessful = levelDesignerVM.saveLevel(levelName)
             }
         }
         .padding()
@@ -88,7 +81,7 @@ private struct SaveButton: View {
 
 private struct LoadButton: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @Binding var levelNameInput: String
+    @Binding var levelName: String
     @Binding var savedLevelNames: [String]
 
     var body: some View {
@@ -96,7 +89,7 @@ private struct LoadButton: View {
             ForEach(savedLevelNames, id: \.self) { levelName in
                 Button(levelName) {
                     if levelDesignerVM.loadLevel(levelName) {
-                        levelNameInput = levelName
+                        self.levelName = levelName
                     }
                 }
             }
@@ -114,12 +107,12 @@ private struct LoadButton: View {
 
 private struct ResetButton: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @Binding var levelNameInput: String
+    @Binding var levelName: String
 
     var body: some View {
         Button(Constants.ButtonText.RESET) {
             levelDesignerVM.resetLevel()
-            levelNameInput = ""
+            levelName = ""
         }
         .padding()
     }
@@ -138,20 +131,14 @@ private struct StartButton: View {
 
 private struct Alerts: View {
     @Binding var isLevelNameBlank: Bool
-    @Binding var isLevelNameExist: Bool
     @Binding var isEmptyBoard: Bool
     @Binding var saveLevelSuccessful: Bool
+    @Binding var levelName: String
 
     var body: some View {
         Text("")
             .alert(isPresented: $isLevelNameBlank, content: {
                 Alert(title: Text("Level name cannot be blank"))
-            })
-            .hidden()
-
-        Text("")
-            .alert(isPresented: $isLevelNameExist, content: {
-                Alert(title: Text("Level name already exist, use a different name"))
             })
             .hidden()
 
@@ -163,12 +150,11 @@ private struct Alerts: View {
 
         Text("")
             .alert(isPresented: $saveLevelSuccessful, content: {
-                Alert(title: Text("Level saved!"))
+                Alert(title: Text("Level - \"\(levelName)\" saved!"))
             })
             .hidden()
     }
 }
-
 
 #Preview {
     ControlsView(levelDesignerVM: LevelDesignerVM())

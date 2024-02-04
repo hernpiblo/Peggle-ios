@@ -12,11 +12,11 @@ class LevelManager {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(level)
-            let fileURL = getFileURL(level.name)
+            let fileURL = getFileURL(level.getName())
             try data.write(to: fileURL)
             return true
         } catch {
-            print("Error saving level \(level.name): \(error.localizedDescription)")
+            print("Error saving level \(level.getName()): \(error.localizedDescription)")
             return false
         }
     }
