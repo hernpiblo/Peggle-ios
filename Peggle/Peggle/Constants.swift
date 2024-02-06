@@ -18,7 +18,7 @@ struct Constants {
     struct ImageName {
         static let BACKGROUND = "background"
         static let ERASER = "eraser"
-        static let BALL_BLUE = "ball-blue"
-        static let BALL_ORANGE = "ball-orange"
+        static let PEG_BLUE = "peg-blue"
+        static let PEG_ORANGE = "peg-orange"
     }
 }

@@ -24,16 +24,16 @@ SwiftLint disabled rules:
 - `conditional_returns_on_newline`: 
 I feel that 
 ```
-        guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { return }
-        guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { return }
+        guard isPointInView(position, pegSize: PegView.pegSize, in: size) else { return }
+        guard !isPointOverlapping(position, pegSize: PegView.pegSize) else { return }
 ```
 is easier to parse than
 ```
-        guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { 
+        guard isPointInView(position, pegSize: PegView.pegSize, in: size) else { 
             return
         }
 
-        guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { 
+        guard !isPointOverlapping(position, pegSize: PegView.pegSize) else { 
             return 
         }
 ```
@@ -57,15 +57,15 @@ Even if it is a one statement function, seeing the word 'return' helps with read
 
 ### Model
 
-#### 1. Ball
+#### 1. Peg
 
-Ball model is used to represent the balls that can be placed on the level designer game. 
+Peg model is used to represent the pegs that can be placed on the level designer game. 
 It stores information about color, position and image resource name
 
 #### 2. Level
 
 Level model is used to represent the entire level that is designed.
-It stores information about the balls placed and the level name
+It stores information about the pegs placed and the level name
 
 
 #### 3. LevelManager
@@ -81,7 +81,7 @@ Main view that contains 3 parts: BoardView, ControlsView, SelectorsView
 
 #### 2. BoardView
 
-BoardView contains the main background and the tappable area where users can tap and place balls. BoardView is also responsible for displaying the BallView
+BoardView contains the main background and the tappable area where users can tap and place pegs. BoardView is also responsible for displaying the PegView
 
 #### 3. ControlsView
 
@@ -89,7 +89,7 @@ ControlsView is a horizontal bar that contains the textinput to allow user to ch
 
 #### 4. SelectorsView
 
-SelectorsView is another horizontal bar that contains the selectors that are used in the level designer, mainly the different colored balls and the eraser tool.
+SelectorsView is another horizontal bar that contains the selectors that are used in the level designer, mainly the different colored pegs and the eraser tool.
 
 ### ViewModel
 
@@ -102,39 +102,39 @@ LevelDesignerVM is the main controller that facilitates the communication betwee
 
 ### Model
 
-#### Ball
+#### Peg
 - Pass in a position and color stub, should get the same position and color using getters
 
-- Pass in BallColor.blue, should return "ball-blue" as image name
+- Pass in PegColor.blue, should return "peg-blue" as image name
 
-- Pass in BallColor.orange, should return "ball-orange" as image name
+- Pass in PegColor.orange, should return "peg-orange" as image name
 
 #### Level
-- Pass in a string and a array of balls should return the same string and same balls array 
+- Pass in a string and a array of pegs should return the same string and same pegs array 
 
 - Use empty initialiser should return the default values for Level object
 
-- Empty level (empty balls array) should contain one ball when addBall is called once
+- Empty level (empty pegs array) should contain one peg when addPeg is called once
 
-- One ball array should become empty when removeBall is called once
+- One peg array should become empty when removePeg is called once
 
-- When updateBallPosition is called, ball in array should have the corresponding new Position
+- When updatePegPosition is called, peg in array should have the corresponding new Position
 
 - When save level is called and levelName does not exist yet, the new level name is used to save the level.
 
-- When save level is called and levelName exist, the level is updated with the new array of balls to be saved
+- When save level is called and levelName exist, the level is updated with the new array of pegs to be saved
 
-- When array has 0 balls, calling resetLevel should do nothing
+- When array has 0 pegs, calling resetLevel should do nothing
 
-- When array has 1 or more balls, calling resetLevel should make the array have 0 balls
+- When array has 1 or more pegs, calling resetLevel should make the array have 0 pegs
 
-- When array has 0 balls, isEmpty should return true
+- When array has 0 pegs, isEmpty should return true
 
-- When array has 1 or more balls, isEmpty should return false
+- When array has 1 or more pegs, isEmpty should return false
 
-- When the array has 1 ball at position X, calling isPointOverlapping with the same position should return true
+- When the array has 1 peg at position X, calling isPointOverlapping with the same position should return true
 
-- When the array has 1 ball at position X, calling isPointOverlapping with the position X + some distance < ballSize should return true for both the x and the y coordinates of the position
+- When the array has 1 peg at position X, calling isPointOverlapping with the position X + some distance < pegSize should return true for both the x and the y coordinates of the position
 
 ### View
 
@@ -150,8 +150,8 @@ LevelDesignerVM is the main controller that facilitates the communication betwee
 
 - When the Save button is clicked, validation checks should be done
     - if level name is blank, alert should show and save should be unsuccessful (return false)
-    - if level name is not blank but no balls are places, alert should show and save should be unsuccessful (return false)
-    - if level name is not blank and balls are placed, save should be successful and alert should show success message
+    - if level name is not blank but no pegs are places, alert should show and save should be unsuccessful (return false)
+    - if level name is not blank and pegs are placed, save should be successful and alert should show success message
 
 - When levelName exists, save should overwrite the currently saved data for that level
 
@@ -161,26 +161,26 @@ LevelDesignerVM is the main controller that facilitates the communication betwee
 
 - when a level is clicked after load button shows menu of levels, loaded level should replace the current one shown on the screen and level name should be shown
 
-- when reset button is clicked, board should clear all balls
+- when reset button is clicked, board should clear all pegs
 
 - when reset button is clicked, level name should reset to blank
 
 #### BoardView
-- when a ball is selected, tapping on a location on the board should show the corresponding ball being placed on the tap location
+- when a peg is selected, tapping on a location on the board should show the corresponding peg being placed on the tap location
 
-- when a touch happens too near the edges of the board (partially out of bounds), the ball should not be placed
+- when a touch happens too near the edges of the board (partially out of bounds), the peg should not be placed
 
-- when a touch happens too near another ball (partially overlapping another ball), ball should not be placed
+- when a touch happens too near another peg (partially overlapping another peg), peg should not be placed
 
 - when eraser is selected, touching an empty area should do nothing
 
-- when eraser is selected, touching a ball should remove it
+- when eraser is selected, touching a peg should remove it
 
-- when tap and dragging a ball to a valid location (within the board and not overlapping), the ball should move to the new location and stay, regardless of current selector
+- when tap and dragging a peg to a valid location (within the board and not overlapping), the peg should move to the new location and stay, regardless of current selector
 
-- when tap and dragging a ball to an invalid location (partially/fully outside teh board or overlapping another ball), the ball should return to its original location, regardless of current selector
+- when tap and dragging a peg to an invalid location (partially/fully outside teh board or overlapping another peg), the peg should return to its original location, regardless of current selector
 
-- when long tapping a ball (> 0.5s), ball should be removed regardless of current selector
+- when long tapping a peg (> 0.5s), peg should be removed regardless of current selector
 
 ## Written Answers
 
@@ -196,7 +196,7 @@ LevelDesignerVM is the main controller that facilitates the communication betwee
 > using `foo` and `bar`, and why you decided to go with `foo`.
 
 Your answer here
-Since both Ball and Level are primarily data containers without complex behavior, i choose to use struct for its value type semantics and to avoid having to handle unintended mutation of its properties. There is also no need for deinitialising for structs so there is one less area where i have to handle memory leaks.
+Since both Peg and Level are primarily data containers without complex behavior, i choose to use struct for its value type semantics and to avoid having to handle unintended mutation of its properties. There is also no need for deinitialising for structs so there is one less area where i have to handle memory leaks.
 
 
 

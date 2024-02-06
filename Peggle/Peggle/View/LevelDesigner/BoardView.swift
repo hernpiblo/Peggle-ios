@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BoardView: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @Binding var currentColor: BallColor
+    @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
 
     var body: some View {
@@ -17,7 +17,7 @@ struct BoardView: View {
             ZStack {
                 BackgroundView(geo: geo, levelDesignerVM: levelDesignerVM,
                                currentColor: $currentColor, isEraseMode: $isEraseMode)
-                BallsView(geo: geo, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
+                PegsView(geo: geo, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
             }
         }
     }
@@ -27,7 +27,7 @@ struct BoardView: View {
 private struct BackgroundView: View {
     var geo: GeometryProxy
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @Binding var currentColor: BallColor
+    @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
 
     var body: some View {
@@ -42,19 +42,19 @@ private struct BackgroundView: View {
 
     private func boardTap(at tapLocation: CGPoint, in geo: GeometryProxy) {
         guard !isEraseMode else { return }
-        levelDesignerVM.addBall(at: tapLocation, in: geo.size, ballColor: currentColor)
+        levelDesignerVM.addPeg(at: tapLocation, in: geo.size, pegColor: currentColor)
     }
 }
 
 
-private struct BallsView: View {
+private struct PegsView: View {
     var geo: GeometryProxy
     @ObservedObject var levelDesignerVM: LevelDesignerVM
     @Binding var isEraseMode: Bool
 
     var body: some View {
-        ForEach(levelDesignerVM.getBalls(), id: \.self) { ball in
-            BallView(ball: ball, geoSize: geo.size, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
+        ForEach(levelDesignerVM.getPegs(), id: \.self) { peg in
+            PegView(peg: peg, geoSize: geo.size, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
         }
     }
 }

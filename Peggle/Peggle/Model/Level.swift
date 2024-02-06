@@ -9,17 +9,17 @@ import Foundation
 
 struct Level: Codable {
     private var name: String
-    private var balls: [Ball]
+    private var pegs: [Peg]
 
-    init(name: String, balls: [Ball]) {
+    init(name: String, pegs: [Peg]) {
         self.name = name
-        self.balls = balls
+        self.pegs = pegs
     }
 
 
     init() {
         self.name = ""
-        self.balls = []
+        self.pegs = []
     }
 
 
@@ -28,27 +28,27 @@ struct Level: Codable {
     }
 
 
-    func getBalls() -> [Ball] {
-        return balls
+    func getPegs() -> [Peg] {
+        return pegs
     }
 
 
-    mutating func addBall(_ ball: Ball) {
-        balls.append(ball)
+    mutating func addPeg(_ peg: Peg) {
+        pegs.append(peg)
     }
 
 
-    mutating func removeBall(_ ball: Ball) {
-        balls.removeAll(where: { $0 == ball })
+    mutating func removePeg(_ peg: Peg) {
+        pegs.removeAll(where: { $0 == peg })
     }
 
 
-    mutating func updateBallPosition(_ ball: Ball, to position: CGPoint) {
-        guard let index = balls.firstIndex(of: ball) else { return }
+    mutating func updatePegPosition(_ peg: Peg, to position: CGPoint) {
+        guard let index = pegs.firstIndex(of: peg) else { return }
 
-        var updatedBall = ball
-        updatedBall.position = position
-        balls[index] = updatedBall
+        var updatedPeg = peg
+        updatedPeg.position = position
+        pegs[index] = updatedPeg
     }
 
 
@@ -57,20 +57,20 @@ struct Level: Codable {
         if LevelManager.checkLevelNameExist(levelName) {
             return LevelManager.saveLevel(self)
         } else {
-            let newLevel = Level(name: levelName, balls: balls)
+            let newLevel = Level(name: levelName, pegs: pegs)
             return LevelManager.saveLevel(newLevel)
         }
     }
 
 
     mutating func resetLevel() {
-        balls.removeAll()
+        pegs.removeAll()
     }
 
 
-    func isPointOverlapping(_ point: CGPoint, _ ballSize: CGFloat) -> Bool {
-        for ball in balls {
-            if abs(ball.position.x - point.x) < ballSize && abs(ball.position.y - point.y) < ballSize {
+    func isPointOverlapping(_ point: CGPoint, _ pegSize: CGFloat) -> Bool {
+        for peg in pegs {
+            if abs(peg.position.x - point.x) < pegSize && abs(peg.position.y - point.y) < pegSize {
                 return true
             }
         }
@@ -79,6 +79,6 @@ struct Level: Codable {
 
 
     func isEmpty() -> Bool {
-        return balls.isEmpty
+        return pegs.isEmpty
     }
 }

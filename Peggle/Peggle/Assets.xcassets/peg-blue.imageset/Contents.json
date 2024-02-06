@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "ball-blue@1x.png",
+      "filename" : "peg-blue@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ball-blue@2x.png",
+      "filename" : "peg-blue@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

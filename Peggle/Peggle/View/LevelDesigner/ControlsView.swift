@@ -144,7 +144,7 @@ private struct Alerts: View {
 
         Text("")
             .alert(isPresented: $isEmptyBoard, content: {
-                Alert(title: Text("Place at least 1 ball"))
+                Alert(title: Text("Place at least 1 peg"))
             })
             .hidden()
 

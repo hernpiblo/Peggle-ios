@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LevelDesignerView: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
-    @State private var currentColor: BallColor = .blue
+    @State private var currentColor: PegColor = .blue
     @State private var isEraseMode = false
 
     var body: some View {

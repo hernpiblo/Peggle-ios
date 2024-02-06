@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SelectorsView: View {
-    @Binding var currentColor: BallColor
+    @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
 
     var body: some View {
         HStack {
-            ForEach(BallColor.allCases, id: \.self) { ballColor in
-                SelectorButton(currentColor: $currentColor, ballColor: ballColor, isEraseMode: $isEraseMode)
+            ForEach(PegColor.allCases, id: \.self) { pegColor in
+                SelectorButton(currentColor: $currentColor, pegColor: pegColor, isEraseMode: $isEraseMode)
             }
             Spacer()
             EraserButton(currentColor: $currentColor, isEraseMode: $isEraseMode)
@@ -25,16 +25,16 @@ struct SelectorsView: View {
 
 
 private struct SelectorButton: View {
-    @Binding var currentColor: BallColor
-    let ballColor: BallColor
+    @Binding var currentColor: PegColor
+    let pegColor: PegColor
     @Binding var isEraseMode: Bool
 
     var body: some View {
         Button(action: {
-            currentColor = ballColor
+            currentColor = pegColor
             isEraseMode = false
         }) {
-            Image(Ball.getImageName(ballColor))
+            Image(Peg.getImageName(pegColor))
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
@@ -42,7 +42,7 @@ private struct SelectorButton: View {
                 .foregroundColor(.black)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black, lineWidth: (currentColor == ballColor) && !isEraseMode ? 2 : 0)
+                        .stroke(Color.black, lineWidth: (currentColor == pegColor) && !isEraseMode ? 2 : 0)
                 )
         }
     }
@@ -50,7 +50,7 @@ private struct SelectorButton: View {
 
 
 private struct EraserButton: View {
-    @Binding var currentColor: BallColor
+    @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
 
     var body: some View {

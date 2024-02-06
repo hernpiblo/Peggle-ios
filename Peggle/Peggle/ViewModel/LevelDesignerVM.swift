@@ -10,31 +10,31 @@ import SwiftUI
 class LevelDesignerVM: ObservableObject {
     @Published private var level = Level()
 
-    // === Ball ===
-    func getBalls() -> [Ball] {
-        return level.getBalls()
+    // === Peg ===
+    func getPegs() -> [Peg] {
+        return level.getPegs()
     }
 
 
-    func addBall(at position: CGPoint, in size: CGSize, ballColor: BallColor) {
-        guard isPointInView(position, ballSize: BallView.ballSize, in: size) else { return }
-        guard !isPointOverlapping(position, ballSize: BallView.ballSize) else { return }
+    func addPeg(at position: CGPoint, in size: CGSize, pegColor: PegColor) {
+        guard isPointInView(position, pegSize: PegView.pegSize, in: size) else { return }
+        guard !isPointOverlapping(position, pegSize: PegView.pegSize) else { return }
 
-        let newBall = Ball(position: position, color: ballColor)
-        level.addBall(newBall)
+        let newPeg = Peg(position: position, color: pegColor)
+        level.addPeg(newPeg)
     }
 
 
-    func removeBall(_ ball: Ball) {
-        level.removeBall(ball)
+    func removePeg(_ peg: Peg) {
+        level.removePeg(peg)
     }
 
 
-    func updateBallPosition(_ ball: Ball, _ dragOffset: CGSize, in geoSize: CGSize) {
-        let newPosition = CGPoint(x: ball.position.x + dragOffset.width, y: ball.position.y + dragOffset.height)
-        guard isPointInView(newPosition, ballSize: BallView.ballSize, in: geoSize) else { return }
-        guard !isPointOverlapping(newPosition, ballSize: BallView.ballSize) else { return }
-        level.updateBallPosition(ball, to: newPosition)
+    func updatePegPosition(_ peg: Peg, _ dragOffset: CGSize, in geoSize: CGSize) {
+        let newPosition = CGPoint(x: peg.position.x + dragOffset.width, y: peg.position.y + dragOffset.height)
+        guard isPointInView(newPosition, pegSize: PegView.pegSize, in: geoSize) else { return }
+        guard !isPointOverlapping(newPosition, pegSize: PegView.pegSize) else { return }
+        level.updatePegPosition(peg, to: newPosition)
     }
 
 
@@ -61,13 +61,13 @@ class LevelDesignerVM: ObservableObject {
     }
 
 
-    private func isPointInView(_ point: CGPoint, ballSize: CGFloat, in size: CGSize) -> Bool {
-        return point.x - ballSize / 2 >= 0 && point.x + ballSize / 2 <= size.width
-            && point.y - ballSize / 2 >= 0 && point.y + ballSize / 2 <= size.height
+    private func isPointInView(_ point: CGPoint, pegSize: CGFloat, in size: CGSize) -> Bool {
+        return point.x - pegSize / 2 >= 0 && point.x + pegSize / 2 <= size.width
+            && point.y - pegSize / 2 >= 0 && point.y + pegSize / 2 <= size.height
     }
 
 
-    private func isPointOverlapping(_ point: CGPoint, ballSize: CGFloat) -> Bool {
-        return level.isPointOverlapping(point, ballSize)
+    private func isPointOverlapping(_ point: CGPoint, pegSize: CGFloat) -> Bool {
+        return level.isPointOverlapping(point, pegSize)
     }
 }
