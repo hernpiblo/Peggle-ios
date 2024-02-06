@@ -15,6 +15,8 @@
 		E68038C72B6BD9F900B419FA /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C62B6BD9F900B419FA /* LevelManager.swift */; };
 		E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */; };
 		E6842CEF2B6F357A0013D0A7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CEE2B6F357A0013D0A7 /* Constants.swift */; };
+		E6842CF12B7272ED0013D0A7 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CF02B7272ED0013D0A7 /* Ball.swift */; };
+		E6A676262B72921800FD303A /* PhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676252B72921800FD303A /* PhysicsEngine.swift */; };
 		E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE81BE2B69586E00D3E120 /* Extensions.swift */; };
 		E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70C932B60A77D00996E0A /* PeggleApp.swift */; };
 		E6F70C982B60A77F00996E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C972B60A77F00996E0A /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 		E68038C62B6BD9F900B419FA /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		E6842CEE2B6F357A0013D0A7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E6842CF02B7272ED0013D0A7 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		E6A676252B72921800FD303A /* PhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsEngine.swift; sourceTree = "<group>"; };
 		E6DE81BE2B69586E00D3E120 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E6F70C902B60A77D00996E0A /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F70C932B60A77D00996E0A /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 			children = (
 				E6F70CC52B60C98400996E0A /* Peg.swift */,
 				E68038C42B6BD81B00B419FA /* Level.swift */,
+				E6842CF02B7272ED0013D0A7 /* Ball.swift */,
+				E6A676252B72921800FD303A /* PhysicsEngine.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -377,6 +383,7 @@
 				E6F70CDC2B62443100996E0A /* ControlsView.swift in Sources */,
 				E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */,
 				E68038C72B6BD9F900B419FA /* LevelManager.swift in Sources */,
+				E6A676262B72921800FD303A /* PhysicsEngine.swift in Sources */,
 				E68038C32B6B403A00B419FA /* PegView.swift in Sources */,
 				E6F70CC62B60C98400996E0A /* Peg.swift in Sources */,
 				E6F70CD02B60CF5500996E0A /* SelectorsView.swift in Sources */,
@@ -385,6 +392,7 @@
 				E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */,
 				E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */,
 				E68038C52B6BD81B00B419FA /* Level.swift in Sources */,
+				E6842CF12B7272ED0013D0A7 /* Ball.swift in Sources */,
 				E68038BC2B6B2F7E00B419FA /* PegColorEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,10 +577,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hernpiblo.Peggle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -609,10 +618,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hernpiblo.Peggle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

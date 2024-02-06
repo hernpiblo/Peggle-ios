@@ -16,12 +16,8 @@ class LevelDesignerVM: ObservableObject {
     }
 
 
-    func addPeg(at position: CGPoint, in size: CGSize, pegColor: PegColor) {
-        guard isPointInView(position, pegSize: PegView.pegSize, in: size) else { return }
-        guard !isPointOverlapping(position, pegSize: PegView.pegSize) else { return }
-
-        let newPeg = Peg(position: position, color: pegColor)
-        level.addPeg(newPeg)
+    func addPeg(at position: CGPoint, in geoSize: CGSize, pegColor: PegColor) {
+        level.addPeg(at: position, in: geoSize, pegColor: pegColor)
     }
 
 
@@ -31,10 +27,7 @@ class LevelDesignerVM: ObservableObject {
 
 
     func updatePegPosition(_ peg: Peg, _ dragOffset: CGSize, in geoSize: CGSize) {
-        let newPosition = CGPoint(x: peg.position.x + dragOffset.width, y: peg.position.y + dragOffset.height)
-        guard isPointInView(newPosition, pegSize: PegView.pegSize, in: geoSize) else { return }
-        guard !isPointOverlapping(newPosition, pegSize: PegView.pegSize) else { return }
-        level.updatePegPosition(peg, to: newPosition)
+        level.updatePegPosition(peg, with: dragOffset, in: geoSize)
     }
 
 
@@ -58,16 +51,5 @@ class LevelDesignerVM: ObservableObject {
 
     func isEmpty() -> Bool {
         return level.isEmpty()
-    }
-
-
-    private func isPointInView(_ point: CGPoint, pegSize: CGFloat, in size: CGSize) -> Bool {
-        return point.x - pegSize / 2 >= 0 && point.x + pegSize / 2 <= size.width
-            && point.y - pegSize / 2 >= 0 && point.y + pegSize / 2 <= size.height
-    }
-
-
-    private func isPointOverlapping(_ point: CGPoint, pegSize: CGFloat) -> Bool {
-        return level.isPointOverlapping(point, pegSize)
     }
 }

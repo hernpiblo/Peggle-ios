@@ -19,7 +19,7 @@ struct PegView: View {
         Image(peg.getImageName())
             .resizable()
             .frame(width: PegView.pegSize, height: PegView.pegSize)
-            .position(peg.position)
+            .position(peg.getPosition())
             .offset(x: dragOffset.width, y: dragOffset.height)
             .onTapGesture { onTap() }
             .onLongPressGesture(minimumDuration: 0.5, perform: { onLongPress() })

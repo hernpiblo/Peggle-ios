@@ -19,6 +19,8 @@ struct Constants {
         static let BACKGROUND = "background"
         static let ERASER = "eraser"
         static let PEG_BLUE = "peg-blue"
+        static let PEG_BLUE_LIT = "peg-blue-glow"
         static let PEG_ORANGE = "peg-orange"
+        static let PEG_ORANGE_LIT = "peg-orange-glow"
     }
 }

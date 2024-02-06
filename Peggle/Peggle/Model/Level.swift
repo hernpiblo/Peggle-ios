@@ -33,8 +33,11 @@ struct Level: Codable {
     }
 
 
-    mutating func addPeg(_ peg: Peg) {
-        pegs.append(peg)
+    mutating func addPeg(at position: CGPoint, in geoSize: CGSize, pegColor: PegColor) {
+        guard isPointInView(position, pegSize: PegView.pegSize, in: geoSize) else { return }
+        guard !isPointOverlapping(position, PegView.pegSize) else { return }
+        let newPeg = Peg(position: position, color: pegColor)
+        pegs.append(newPeg)
     }
 
 
@@ -43,11 +46,13 @@ struct Level: Codable {
     }
 
 
-    mutating func updatePegPosition(_ peg: Peg, to position: CGPoint) {
-        guard let index = pegs.firstIndex(of: peg) else { return }
-
+    mutating func updatePegPosition(_ peg: Peg, with dragOffset: CGSize, in geoSize: CGSize) {
+        let newPosition = peg.getNewPosition(with: dragOffset)
+        guard isPointInView(newPosition, pegSize: PegView.pegSize, in: geoSize) else { return }
+        guard !isPointOverlapping(newPosition, PegView.pegSize) else { return }
         var updatedPeg = peg
-        updatedPeg.position = position
+        updatedPeg.updatePosition(to: newPosition)
+        guard let index = pegs.firstIndex(of: peg) else { return }
         pegs[index] = updatedPeg
     }
 
@@ -68,11 +73,15 @@ struct Level: Codable {
     }
 
 
-    func isPointOverlapping(_ point: CGPoint, _ pegSize: CGFloat) -> Bool {
-        for peg in pegs {
-            if abs(peg.position.x - point.x) < pegSize && abs(peg.position.y - point.y) < pegSize {
-                return true
-            }
+    private func isPointInView(_ point: CGPoint, pegSize: CGFloat, in size: CGSize) -> Bool {
+        return point.x - pegSize / 2 >= 0 && point.x + pegSize / 2 <= size.width
+            && point.y - pegSize / 2 >= 0 && point.y + pegSize / 2 <= size.height
+    }
+
+
+    private func isPointOverlapping(_ point: CGPoint, _ pegSize: CGFloat) -> Bool {
+        for peg in pegs where peg.isOverlapping(with: point, pegSize: PegView.pegSize) {
+            return true
         }
         return false
     }
