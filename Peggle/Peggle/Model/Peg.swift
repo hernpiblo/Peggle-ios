@@ -5,24 +5,25 @@
 //  Created by proglab on 24/1/24.
 //
 
-import Foundation
+import SwiftUI
 
 struct Peg: Hashable, Codable {
-    private var position: CGPoint
     private let color: PegColor
-    private var isHit = false
+    var isHit = false
+    var isHidden = false
     private var imageName: String {
         Peg.getImageName(color, isHit: isHit)
     }
+    private var circleStaticBody: CircleStaticBody
 
-    init(position: CGPoint, color: PegColor) {
-        self.position = position
+    init(position: CGPoint, color: PegColor, radius: CGFloat) {
         self.color = color
+        self.circleStaticBody = CircleStaticBody(position: position, radius: radius)
     }
 
 
     func getPosition() -> CGPoint {
-        return position
+        return circleStaticBody.getPosition()
     }
 
 
@@ -37,22 +38,35 @@ struct Peg: Hashable, Codable {
 
 
     func getNewPosition(with dragOffset: CGSize) -> CGPoint {
-        return CGPoint(x: position.x + dragOffset.width, y: position.y + dragOffset.height)
+        return circleStaticBody.getNewPosition(with: dragOffset)
     }
 
 
     mutating func updatePosition(to newPosition: CGPoint) {
-        position = newPosition
+        circleStaticBody.updatePosition(to: newPosition)
     }
 
 
     func isOverlapping(with other: CGPoint, pegSize: CGFloat) -> Bool {
-        return abs(position.x - other.x) < pegSize && abs(position.y - other.y) < pegSize
+        return circleStaticBody.isOverlapping(with: other, pegSize: pegSize)
     }
 
 
-    mutating func hit() {
-        isHit = true
+    func isCollidingWith(_ ball: Ball) -> Bool {
+        return circleStaticBody.isCollidingWith(ball)
+    }
+
+
+    func hit() -> Peg {
+        var hitPeg = self
+        hitPeg.isHit = true
+        return hitPeg
+    }
+    
+    func hide() -> Peg {
+        var hiddenPeg = self
+        hiddenPeg.isHidden = true
+        return hiddenPeg
     }
 
 
