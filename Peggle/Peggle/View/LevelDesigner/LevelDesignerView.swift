@@ -14,9 +14,12 @@ struct LevelDesignerView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            NavigationStack {
             BoardView(levelDesignerVM: levelDesignerVM, currentColor: $currentColor, isEraseMode: $isEraseMode)
             ControlsView(levelDesignerVM: levelDesignerVM)
             SelectorsView(currentColor: $currentColor, isEraseMode: $isEraseMode)
+        }
+//        .border(Color.black)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

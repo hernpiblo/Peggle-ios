@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct PegView: View {
-    static let pegSize: CGFloat = 50
+    static let pegRadius: CGFloat = 25
+    static var pegSize: CGFloat { pegRadius * 2 }
     let peg: Peg
     let geoSize: CGSize
     @ObservedObject var levelDesignerVM: LevelDesignerVM

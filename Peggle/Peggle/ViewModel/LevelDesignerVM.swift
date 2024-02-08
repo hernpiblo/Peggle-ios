@@ -49,6 +49,11 @@ class LevelDesignerVM: ObservableObject {
     }
 
 
+    func setLevelSize(_ size: CGSize) {
+        level.setSize(size)
+    }
+
+
     func isEmpty() -> Bool {
         return level.isEmpty()
     }

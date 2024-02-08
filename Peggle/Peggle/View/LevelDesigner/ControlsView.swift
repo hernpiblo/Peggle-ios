@@ -14,6 +14,7 @@ struct ControlsView: View {
     @State private var isLevelNameBlank = false
     @State private var isEmptyBoard = false
     @State private var saveLevelSuccessful = false
+    @State private var isSavedOrLoaded = false
 
     var body: some View {
         HStack {
@@ -23,15 +24,20 @@ struct ControlsView: View {
                        levelName: $levelName,
                        isLevelNameBlank: $isLevelNameBlank,
                        isEmptyBoard: $isEmptyBoard,
-                       saveLevelSuccessful: $saveLevelSuccessful)
+                       saveLevelSuccessful: $saveLevelSuccessful,
+                       isSavedOrLoaded: $isSavedOrLoaded)
 
             LoadButton(levelDesignerVM: levelDesignerVM,
                        levelName: $levelName,
-                       savedLevelNames: $savedLevelNames)
+                       savedLevelNames: $savedLevelNames,
+                       isSavedOrLoaded: $isSavedOrLoaded)
 
-            ResetButton(levelDesignerVM: levelDesignerVM, levelName: $levelName)
+            ResetButton(levelDesignerVM: levelDesignerVM,
+                        levelName: $levelName,
+                        isSavedOrLoaded: $isSavedOrLoaded)
 
-            StartButton()
+            StartButton(levelName: $levelName,
+                        isSavedOrLoaded: $isSavedOrLoaded)
 
             Alerts(isLevelNameBlank: $isLevelNameBlank,
                    isEmptyBoard: $isEmptyBoard,
@@ -63,6 +69,7 @@ private struct SaveButton: View {
     @Binding var isLevelNameBlank: Bool
     @Binding var isEmptyBoard: Bool
     @Binding var saveLevelSuccessful: Bool
+    @Binding var isSavedOrLoaded: Bool
 
     var body: some View {
         Button(Constants.ButtonText.SAVE) {
@@ -72,6 +79,7 @@ private struct SaveButton: View {
                 isEmptyBoard = true
             } else {
                 saveLevelSuccessful = levelDesignerVM.saveLevel(levelName)
+                isSavedOrLoaded = saveLevelSuccessful
             }
         }
         .padding()
@@ -83,6 +91,7 @@ private struct LoadButton: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
     @Binding var levelName: String
     @Binding var savedLevelNames: [String]
+    @Binding var isSavedOrLoaded: Bool
 
     var body: some View {
         Menu(Constants.ButtonText.LOAD) {
@@ -90,6 +99,7 @@ private struct LoadButton: View {
                 Button(levelName) {
                     if levelDesignerVM.loadLevel(levelName) {
                         self.levelName = levelName
+                        isSavedOrLoaded = true
                     }
                 }
             }
@@ -108,11 +118,13 @@ private struct LoadButton: View {
 private struct ResetButton: View {
     @ObservedObject var levelDesignerVM: LevelDesignerVM
     @Binding var levelName: String
+    @Binding var isSavedOrLoaded: Bool
 
     var body: some View {
         Button(Constants.ButtonText.RESET) {
             levelDesignerVM.resetLevel()
             levelName = ""
+            isSavedOrLoaded = false
         }
         .padding()
     }
@@ -120,11 +132,23 @@ private struct ResetButton: View {
 
 
 private struct StartButton: View {
+    @Binding var levelName: String
+    @Binding var isSavedOrLoaded: Bool
+
+    var level: Level {
+        LevelManager.loadLevel(levelName: levelName) ?? Level()
+    }
+
     var body: some View {
-        Button(Constants.ButtonText.START) {
-            // TODO: Start level
-        }
-        .padding()
+//        NavigationStack {
+            NavigationLink(Constants.ButtonText.START) {
+                GameView(gameVM: GameVM(level: level))
+//                b()
+                    .navigationBarBackButtonHidden()
+            }.disabled(!isSavedOrLoaded)
+//        }
+            //        .border(Color.black)
+//        .frame(width: 80, height: 80)
     }
 }
 

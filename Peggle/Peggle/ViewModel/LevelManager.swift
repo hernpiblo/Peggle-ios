@@ -38,6 +38,16 @@ class LevelManager {
     }
 
 
+    static func deleteLevel(_ levelName: String) {
+        let fileURL = getFileURL(levelName)
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+        } catch {
+            print("Error deleting level file \(levelName): \(error.localizedDescription)")
+        }
+    }
+
+
     static func checkLevelNameExist(_ levelName: String) -> Bool {
         return listAllLevels().contains(levelName)
     }
