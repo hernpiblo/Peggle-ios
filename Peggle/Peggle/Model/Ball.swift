@@ -12,6 +12,7 @@ class Ball {
     static let radius: CGFloat = 25
     static var size: CGFloat { radius * 2 }
     static let initialSpeed: CGFloat = 15
+
     private var ballPhysicsBody: BallPhysicsBody
     var position: CGPoint { ballPhysicsBody.position }
     var x: CGFloat { ballPhysicsBody.position.x }

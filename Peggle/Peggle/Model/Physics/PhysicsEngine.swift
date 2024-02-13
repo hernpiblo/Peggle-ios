@@ -21,15 +21,6 @@ struct PhysicsEngine {
         return velocity
     }
 
-
-//    static func nextFrameBall(ball: Ball, pegs: [Peg], size: CGSize, frameDuration: CGFloat) -> Ball {
-//        var ballNextPos = getBallWithNextPositionAndVelocity(ball: ball, frameDuration: frameDuration)
-//        ballNextPos = updateBallBounceWithWall(ball: ballNextPos, size: size)
-//        ballNextPos = updateBallBounceWithObject(ball: ballNextPos, pegs: pegs)
-//        return ballNextPos
-//    }
-
-
     static func updateBallNextFrame(ball: Ball, frameDuration: CGFloat, gravity: CGFloat, dampingFactor: CGFloat) {
         // Displacement (s = ut + 0.5at2)
         let displacementX = ball.dx * frameDuration
@@ -79,21 +70,19 @@ struct PhysicsEngine {
         return finalVelocity
     }
 
-//    static func penetrationResolution(move point1: CGPoint, radius1: CGFloat, awayFrom point2: CGPoint, radius2: CGFloat) -> CGPoint {
-//        let distance = point1.distance(to: point2)
-//        let overlap = radius1 + radius2 - distance
+//    static func penetrationResolution(move ball: Ball, awayFrom peg: Peg) {
+//        let distance = ball.position.distance(to: peg.position)
+//        let overlap = Ball.radius + peg.radius - distance
 //        
 //        if overlap > 0 {
-//            let directionVector = CGVector(dx: point2.x - point1.x,
-//                                           dy: point2.y - point1.y)
+//            let directionVector = CGVector(dx: peg.x - ball.x,
+//                                           dy: peg.y - ball.y)
 //            let normalizedDirection = CGVector(dx: directionVector.dx / distance,
 //                                               dy: directionVector.dy / distance)
-//            let penetrationDepth = overlap
 //            
-//            return CGPoint(x: point1.x + normalizedDirection.dx * penetrationDepth,
-//                          y: point1.y + normalizedDirection.dy * penetrationDepth)
-//        } else {
-//            return point1
+//            let newBallPosition = CGPoint(x: ball.x + normalizedDirection.dx * overlap,
+//                                          y: ball.y + normalizedDirection.dy * overlap)
+//            ball.setPosition(newBallPosition)
 //        }
 //    }
 }

@@ -10,12 +10,10 @@ import SwiftUI
 struct GamePegView: View {
     var gameVM: GameVM
     let peg: Peg
-    @State var isHit: Bool
 
     init(gameVM: GameVM, peg: Peg) {
         self.gameVM = gameVM
         self.peg = peg
-        _isHit = State(initialValue: peg.isHit)
     }
 
     var body: some View {
@@ -23,9 +21,7 @@ struct GamePegView: View {
             .resizable()
             .frame(width: peg.size, height: peg.size)
             .position(peg.position)
-//            .onReceive(gameVM.objectWillChange) { _ in
-//                isHit = peg.isHit
-//            }
             .opacity(peg.isHidden ? 0 : 1)
+            .animation(.easeOut(duration: 1.5), value: peg.isHidden)
     }
 }

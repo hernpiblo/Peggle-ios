@@ -15,9 +15,9 @@ class GameVM {
     var pegs: [Peg] { level.pegs }
 
     private static let frameDuration: CGFloat = 0.50
-    private static let gravity: CGFloat = 2 // Downwards is positive
-    private static let dampingFactor: CGFloat = 0.995
-    private static let coefficientOfRestitution: CGFloat = 0.995
+    private static let gravity: CGFloat = 1.5 // Downwards is positive
+    private static let dampingFactor: CGFloat = 0.995 // Lower = more air resistance
+    private static let coefficientOfRestitution: CGFloat = 0.995 // Lower = less bouncy
 
     private var displayLink: CADisplayLink!
 
@@ -49,8 +49,6 @@ class GameVM {
             ball = nil
             isBallInPlay = false
             level.hideHitPegs()
-//            withAnimation(.easeInOut(duration: 1.0)) {
-//            }
         }
     }
     
@@ -70,6 +68,6 @@ class GameVM {
     func checkIfBallOut() -> Bool {
         return isBallInPlay
             && ball != nil
-            && ball!.y >= level.boardSize.height + Ball.radius
+            && ball!.y >= level.boardSize.height - Ball.radius
     }
 }
