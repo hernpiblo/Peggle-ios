@@ -2,59 +2,55 @@
 //  LevelDesignerVM.swift
 //  Peggle
 //
-//  Created by proglab on 1/2/24.
+//  Created by proglab on 13/2/24.
 //
 
 import SwiftUI
 
-class LevelDesignerVM: ObservableObject {
-    @Published private var level = Level()
-
+@Observable
+class LevelDesignerVM {
+    private(set) var level = Level()
+    var pegs: [Peg] { level.pegs }
+    
     // === Peg ===
-    func getPegs() -> [Peg] {
-        return level.getPegs()
+    func addPeg(at position: CGPoint, radius: CGFloat, color: PegColor) {
+        let peg = Peg(position: position, radius: radius, color: color)
+        level.addPeg(peg)
     }
-
-
-    func addPeg(at position: CGPoint, in geoSize: CGSize, pegColor: PegColor) {
-        level.addPeg(at: position, in: geoSize, pegColor: pegColor)
-    }
-
 
     func removePeg(_ peg: Peg) {
         level.removePeg(peg)
     }
 
-
-    func updatePegPosition(_ peg: Peg, _ dragOffset: CGSize, in geoSize: CGSize) {
-        level.updatePegPosition(peg, with: dragOffset, in: geoSize)
+    func updatePegPosition(_ peg: Peg, _ dragOffset: CGSize) {
+        level.updatePegPosition(peg, with: dragOffset)
     }
-
 
     // === Level ===
     func resetLevel() {
         level.resetLevel()
     }
 
-
     func saveLevel(_ levelName: String) -> Bool {
-        return level.saveLevel(levelName)
+        setName(levelName)
+        return LevelManager.saveLevel(level)
     }
 
-
     func loadLevel(_ levelName: String) -> Bool {
-        guard let level: Level = LevelManager.loadLevel(levelName: levelName) else { return false }
+        guard let level: Level = LevelManager.loadLevel(levelName) else { return false }
         self.level = level
         return true
     }
-
-
-    func setLevelSize(_ size: CGSize) {
+    
+    func setName(_ name: String) {
+        level.setName(name)
+    }
+    
+    func setSize(_ size: CGSize) {
         level.setSize(size)
     }
 
-
     func isEmpty() -> Bool {
-        return level.isEmpty()
+        return level.isEmpty
     }
 }

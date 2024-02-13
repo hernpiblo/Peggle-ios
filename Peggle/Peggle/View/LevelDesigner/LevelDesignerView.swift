@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct LevelDesignerView: View {
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @State private var currentColor: PegColor = .blue
     @State private var isEraseMode = false
+    @State private var currentPegRadius: CGFloat = Peg.defaultRadius
 
     var body: some View {
         VStack(spacing: 0) {
-            NavigationStack {
-            BoardView(levelDesignerVM: levelDesignerVM, currentColor: $currentColor, isEraseMode: $isEraseMode)
+            BoardView(levelDesignerVM: levelDesignerVM,
+                      currentColor: $currentColor,
+                      isEraseMode: $isEraseMode,
+                      currentPegRadius: $currentPegRadius)
             ControlsView(levelDesignerVM: levelDesignerVM)
             SelectorsView(currentColor: $currentColor, isEraseMode: $isEraseMode)
-        }
-//        .border(Color.black)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

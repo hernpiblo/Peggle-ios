@@ -1,129 +1,82 @@
 //
-//  Level.swift
+//  NewLevel.swift
 //  Peggle
 //
-//  Created by proglab on 1/2/24.
+//  Created by proglab on 12/2/24.
 //
 
 import Foundation
-import SwiftUI
 
-struct Level: Codable {
-    private var name: String
-    private var pegs: [Peg]
-    private var size: CGSize
-
-    init(name: String, pegs: [Peg], size: CGSize) {
-        self.name = name
+@Observable
+class Level: Codable {
+    private(set) var pegs: [Peg]
+    private(set) var name: String
+    private(set) var boardSize: CGSize
+    var isEmpty: Bool { pegs.isEmpty }
+    
+    init(pegs: [Peg], name: String, boardSize: CGSize) {
         self.pegs = pegs
-        self.size = size
+        self.name = name
+        self.boardSize = boardSize
     }
-
-
+    
     init() {
-        self.name = ""
         self.pegs = []
-        self.size = CGSize()
-    }
-
-
-    func getName() -> String {
-        return name
-    }
-
-
-    func getPegs() -> [Peg] {
-        return pegs
-    }
-
-
-    func getSize() -> CGSize {
-        return size
-    }
-
-
-    mutating func setSize(_ size: CGSize) {
-        self.size = size
-    }
-
-
-    func getOrigin() -> CGPoint {
-        return CGPoint(x: size.width / 2, y: 0)
-    }
-
-
-    mutating func addPeg(at position: CGPoint, in geoSize: CGSize, pegColor: PegColor) {
-        guard isPointInView(position, pegRadius: PegView.pegRadius, in: geoSize) else { return }
-        guard !isPointOverlapping(position, PegView.pegSize) else { return }
-        let newPeg = Peg(position: position, color: pegColor, radius: PegView.pegRadius)
-        pegs.append(newPeg)
-    }
-
-
-    mutating func removePeg(_ peg: Peg) {
-        pegs.removeAll(where: { $0 == peg })
-    }
-
-
-    mutating func updatePegPosition(_ peg: Peg, with dragOffset: CGSize, in geoSize: CGSize) {
-        let newPosition = peg.getNewPosition(with: dragOffset)
-        guard isPointInView(newPosition, pegRadius: PegView.pegRadius, in: geoSize) else { return }
-        guard !isPointOverlapping(newPosition, PegView.pegSize) else { return }
-        var updatedPeg = peg
-        updatedPeg.updatePosition(to: newPosition)
-        guard let index = pegs.firstIndex(of: peg) else { return }
-        pegs[index] = updatedPeg
+        self.name = ""
+        self.boardSize = CGSize()
     }
     
-    mutating func hitPeg(_ peg: Peg) {
-        guard let index = pegs.firstIndex(of: peg) else { return }
-        let hitPeg = peg.hit()
-        pegs[index] = hitPeg
+    func setName(_ name: String) {
+        self.name = name
     }
     
+    // === Pegs ===
+    func addPeg(_ peg: Peg) {
+        guard isPegInView(peg) else { return }
+        guard !isPegOverlapping(peg, ignore: nil) else { return }
+        pegs.append(peg)
+    }
     
-    mutating func hideHitPegs() {
-        for peg in pegs {
-            if peg.isHit && !peg.isHidden {
-                guard let index = pegs.firstIndex(of: peg) else { return }
-                let hiddenPeg = peg.hide()
-                pegs[index] = hiddenPeg
+    private func isPegInView(_ peg: Peg) -> Bool {
+        return peg.x - peg.radius >= 0 && peg.x + peg.radius <= boardSize.width
+            && peg.y - peg.radius >= 0 && peg.y + peg.radius <= boardSize.height
+    }
+    
+    private func isPegOverlapping(_ newPeg: Peg, ignore ignoredPeg: Peg?) -> Bool {
+        for peg in pegs where peg.isOverlapping(with: newPeg) {
+            if (ignoredPeg == nil) || (ignoredPeg != nil && peg != ignoredPeg) {
+                return true
             }
-        }
-    }
-
-
-    // If level name exists, then update the existing level, else create a new level to save
-    func saveLevel(_ levelName: String) -> Bool {
-        if LevelManager.checkLevelNameExist(levelName) {
-            return LevelManager.saveLevel(self)
-        } else {
-            let newLevel = Level(name: levelName, pegs: pegs, size: size)
-            return LevelManager.saveLevel(newLevel)
-        }
-    }
-
-
-    mutating func resetLevel() {
-        pegs.removeAll()
-    }
-
-
-    private func isPointInView(_ point: CGPoint, pegRadius: CGFloat, in size: CGSize) -> Bool {
-        return point.x - pegRadius >= 0 && point.x + pegRadius <= size.width
-            && point.y - pegRadius >= 0 && point.y + pegRadius <= size.height
-    }
-
-
-    private func isPointOverlapping(_ point: CGPoint, _ pegSize: CGFloat) -> Bool {
-        for peg in pegs where peg.isOverlapping(with: point, pegSize: PegView.pegSize) {
-            return true
         }
         return false
     }
-
-
-    func isEmpty() -> Bool {
-        return pegs.isEmpty
+    
+    func removePeg(_ peg: Peg) {
+        pegs.removeAll(where: { $0 == peg })
+    }
+    
+    func updatePegPosition(_ peg: Peg, with dragOffset: CGSize) {
+        guard let index = pegs.firstIndex(of: peg) else { return }
+        let pegIfMoved = pegs[index].getIfMoved(with: dragOffset)
+        guard isPegInView(pegIfMoved) else { return }
+        guard !isPegOverlapping(pegIfMoved, ignore: peg) else { return }
+        peg.updatePosition(with: dragOffset)
+    }
+    
+    func hideHitPegs() {
+        for peg in pegs {
+            if peg.isHit && !peg.isHidden {
+                peg.hide()
+            }
+        }
+    }
+    
+    // === Level ===
+    func resetLevel() {
+        pegs.removeAll()
+    }
+    
+    func setSize(_ size: CGSize) {
+        boardSize = size
     }
 }

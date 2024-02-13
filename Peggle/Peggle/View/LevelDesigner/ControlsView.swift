@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ControlsView: View {
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @State private var levelName: String = ""
     @State private var savedLevelNames: [String] = []
     @State private var isLevelNameBlank = false
@@ -22,6 +22,7 @@ struct ControlsView: View {
 
             SaveButton(levelDesignerVM: levelDesignerVM,
                        levelName: $levelName,
+                       savedLevelNames: $savedLevelNames,
                        isLevelNameBlank: $isLevelNameBlank,
                        isEmptyBoard: $isEmptyBoard,
                        saveLevelSuccessful: $saveLevelSuccessful,
@@ -64,8 +65,9 @@ private struct LevelNameTextBox: View {
 
 
 private struct SaveButton: View {
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @Binding var levelName: String
+    @Binding var savedLevelNames: [String]
     @Binding var isLevelNameBlank: Bool
     @Binding var isEmptyBoard: Bool
     @Binding var saveLevelSuccessful: Bool
@@ -79,6 +81,7 @@ private struct SaveButton: View {
                 isEmptyBoard = true
             } else {
                 saveLevelSuccessful = levelDesignerVM.saveLevel(levelName)
+                savedLevelNames = LevelManager.listAllLevels()
                 isSavedOrLoaded = saveLevelSuccessful
             }
         }
@@ -88,7 +91,7 @@ private struct SaveButton: View {
 
 
 private struct LoadButton: View {
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @Binding var levelName: String
     @Binding var savedLevelNames: [String]
     @Binding var isSavedOrLoaded: Bool
@@ -116,7 +119,7 @@ private struct LoadButton: View {
 
 
 private struct ResetButton: View {
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @Binding var levelName: String
     @Binding var isSavedOrLoaded: Bool
 
@@ -136,15 +139,15 @@ private struct StartButton: View {
     @Binding var isSavedOrLoaded: Bool
 
     var level: Level {
-        LevelManager.loadLevel(levelName: levelName) ?? Level()
+        LevelManager.loadLevel(levelName) ?? Level()
     }
 
     var body: some View {
 //        NavigationStack {
+//        Button("START") {
             NavigationLink(Constants.ButtonText.START) {
-                GameView(gameVM: GameVM(level: level))
-//                b()
-                    .navigationBarBackButtonHidden()
+//                GameView(gameVM: GameVM(level: level))
+//                    .navigationBarBackButtonHidden()
             }.disabled(!isSavedOrLoaded)
 //        }
             //        .border(Color.black)

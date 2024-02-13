@@ -17,7 +17,7 @@ opt_in_rules:
   - empty_collection_literal
   - empty_count
   - empty_string
-  - empty_xctest_method
+#  - empty_xctest_method
   - expiring_todo
   - explicit_init
   - explicit_self
@@ -81,4 +81,14 @@ disabled_rules:
 
 line_length:
   warning: 120
-  error: 150
+#  error: 150
+
+if [[ "$(uname -m)" == arm64 ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+if which swiftlint > /dev/null; then
+  swiftlint
+else
+  echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+fi

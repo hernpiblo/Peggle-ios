@@ -7,24 +7,31 @@
 
 import Foundation
 
-struct BallPhysicsBody {
-    var position: CGPoint
-    var velocity: CGVector
-    var radius: CGFloat
-
-    func reverseVx() -> BallPhysicsBody {
-        let newVelocity = CGVector(dx: velocity.dx * -1, dy: velocity.dy)
-        return BallPhysicsBody(position: position, velocity: newVelocity, radius: radius)
+@Observable
+class BallPhysicsBody {
+    private(set) var position: CGPoint
+    private(set) var velocity: CGVector
+    private(set) var radius: CGFloat
+    
+    init(position: CGPoint, velocity: CGVector, radius: CGFloat) {
+        self.position = position
+        self.velocity = velocity
+        self.radius = radius
     }
 
-
-    func reverseVy() -> BallPhysicsBody {
-        let newVelocity = CGVector(dx: velocity.dx, dy: velocity.dy * -1)
-        return BallPhysicsBody(position: position, velocity: newVelocity, radius: radius)
+    func reverseVx() {
+        velocity.dx *= -1
     }
 
+    func reverseVy() {
+        velocity.dy *= -1
+    }
 
-    func setVelocity(_ velocity: CGVector) -> BallPhysicsBody {
-        return BallPhysicsBody(position: position, velocity: velocity, radius: radius)
+    func setPosition(_ position: CGPoint) {
+        self.position = position
+    }
+    
+    func setVelocity(_ velocity: CGVector) {
+        self.velocity = velocity
     }
 }

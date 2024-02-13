@@ -34,7 +34,7 @@ private struct SelectorButton: View {
             currentColor = pegColor
             isEraseMode = false
         }) {
-            Image(Peg.getImageName(pegColor, isHit: false))
+            Image(PegView.getImageName(of: pegColor, isHit: false))
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)

@@ -2,80 +2,66 @@
 //  Peg.swift
 //  Peggle
 //
-//  Created by proglab on 24/1/24.
+//  Created by proglab on 12/2/24.
 //
 
 import SwiftUI
 
-struct Peg: Hashable, Codable {
-    private let color: PegColor
-    var isHit = false
-    var isHidden = false
-    private var imageName: String {
-        Peg.getImageName(color, isHit: isHit)
-    }
-    private var circleStaticBody: CircleStaticBody
+@Observable
+class Peg: Codable, Equatable, Hashable {
+    static let defaultRadius: CGFloat = 25
+    private let circleStaticBody: CircleStaticBody
+    private(set) var isHit = false
+    private(set) var isHidden = false
+    private(set) var color: PegColor = .blue
+    var position: CGPoint { circleStaticBody.position }
+    var x: CGFloat { circleStaticBody.position.x }
+    var y: CGFloat { circleStaticBody.position.y }
+    var radius: CGFloat { circleStaticBody.radius }
+    var size: CGFloat { radius * 2 }
 
-    init(position: CGPoint, color: PegColor, radius: CGFloat) {
-        self.color = color
+    init(position: CGPoint, radius: CGFloat, color: PegColor) {
         self.circleStaticBody = CircleStaticBody(position: position, radius: radius)
+        self.color = color
     }
-
-
-    func getPosition() -> CGPoint {
-        return circleStaticBody.getPosition()
+    
+    init(circleStaticBody: CircleStaticBody) {
+        self.circleStaticBody = circleStaticBody
     }
-
-
-    func getColor() -> PegColor {
-        return color
+    
+    func hit() {
+        isHit = true
     }
-
-
-    func getImageName() -> String {
-        return Peg.getImageName(color, isHit: isHit)
+    
+    func hide() {
+        isHidden = true
     }
-
-
-    func getNewPosition(with dragOffset: CGSize) -> CGPoint {
-        return circleStaticBody.getNewPosition(with: dragOffset)
+    
+    func isOverlapping(with other: Peg) -> Bool {
+        return circleStaticBody.isOverlapping(with: other.circleStaticBody)
     }
-
-
-    mutating func updatePosition(to newPosition: CGPoint) {
-        circleStaticBody.updatePosition(to: newPosition)
-    }
-
-
-    func isOverlapping(with other: CGPoint, pegSize: CGFloat) -> Bool {
-        return circleStaticBody.isOverlapping(with: other, pegSize: pegSize)
-    }
-
-
+    
     func isCollidingWith(_ ball: Ball) -> Bool {
         return circleStaticBody.isCollidingWith(ball)
     }
-
-
-    func hit() -> Peg {
-        var hitPeg = self
-        hitPeg.isHit = true
-        return hitPeg
+    
+    func getIfMoved(with dragOffset: CGSize) -> Peg {
+        return Peg(circleStaticBody: circleStaticBody.getIfMoved(with: dragOffset))
     }
     
-    func hide() -> Peg {
-        var hiddenPeg = self
-        hiddenPeg.isHidden = true
-        return hiddenPeg
+    func updatePosition(with dragOffset: CGSize) {
+        circleStaticBody.updatePosition(with: dragOffset)
     }
-
-
-    static func getImageName(_ color: PegColor, isHit: Bool) -> String {
-        switch color {
-        case .blue:
-            return isHit ? Constants.ImageName.PEG_BLUE_LIT : Constants.ImageName.PEG_BLUE
-        case .orange:
-            return isHit ? Constants.ImageName.PEG_ORANGE_LIT : Constants.ImageName.PEG_ORANGE
-        }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(circleStaticBody)
+        hasher.combine(color)
+    }
+    
+    static func == (lhs: Peg, rhs: Peg) -> Bool {
+        return lhs.circleStaticBody == rhs.circleStaticBody
+        && lhs.isHit == rhs.isHit
+        && lhs.isHidden == rhs.isHidden
+        && lhs.color == rhs.color
     }
 }

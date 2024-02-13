@@ -8,27 +8,33 @@
 import SwiftUI
 
 struct BoardView: View {
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
+    @Binding var currentPegRadius: CGFloat
 
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                BackgroundView(geo: geo, levelDesignerVM: levelDesignerVM,
-                               currentColor: $currentColor, isEraseMode: $isEraseMode)
-                PegsView(geo: geo, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
+                BackgroundView(geo: geo,
+                               levelDesignerVM: levelDesignerVM,
+                               currentColor: $currentColor,
+                               isEraseMode: $isEraseMode,
+                               currentPegRadius: $currentPegRadius)
+                PegsView(levelDesignerVM: levelDesignerVM,
+                         isEraseMode: $isEraseMode)
             }
+            .onAppear{ levelDesignerVM.setSize(geo.size) }
         }
     }
 }
 
-
 private struct BackgroundView: View {
     var geo: GeometryProxy
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
+    @Binding var currentPegRadius: CGFloat
 
     var body: some View {
         Image(Constants.ImageName.BACKGROUND)
@@ -36,25 +42,26 @@ private struct BackgroundView: View {
             .scaledToFill()
             .frame(width: geo.size.width, height: geo.size.height)
             .onTapGesture { tapLocation in
-                boardTap(at: tapLocation, in: geo)
+                boardTap(at: tapLocation)
             }
     }
 
-    private func boardTap(at tapLocation: CGPoint, in geo: GeometryProxy) {
+    private func boardTap(at tapLocation: CGPoint) {
         guard !isEraseMode else { return }
-        levelDesignerVM.addPeg(at: tapLocation, in: geo.size, pegColor: currentColor)
+        levelDesignerVM.addPeg(at: tapLocation, radius: currentPegRadius, color: currentColor)
     }
 }
 
 
 private struct PegsView: View {
-    var geo: GeometryProxy
-    @ObservedObject var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerVM
     @Binding var isEraseMode: Bool
 
     var body: some View {
-        ForEach(levelDesignerVM.getPegs(), id: \.self) { peg in
-            PegView(peg: peg, geoSize: geo.size, levelDesignerVM: levelDesignerVM, isEraseMode: $isEraseMode)
+        ForEach(levelDesignerVM.level.pegs, id: \.self) { peg in
+            PegView(levelDesignerVM: levelDesignerVM,
+                    isEraseMode: $isEraseMode,
+                    peg: peg)
         }
     }
 }

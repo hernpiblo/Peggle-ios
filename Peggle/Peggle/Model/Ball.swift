@@ -2,49 +2,41 @@
 //  Ball.swift
 //  Peggle
 //
-//  Created by proglab on 6/2/24.
+//  Created by proglab on 13/2/24.
 //
 
 import Foundation
 
-struct Ball {
-    static let ballRadius: CGFloat = 20
+@Observable
+class Ball {
+    static let radius: CGFloat = 25
+    static var size: CGFloat { radius * 2 }
+    static let initialSpeed: CGFloat = 15
     private var ballPhysicsBody: BallPhysicsBody
-    
+    var position: CGPoint { ballPhysicsBody.position }
+    var x: CGFloat { ballPhysicsBody.position.x }
+    var y: CGFloat { ballPhysicsBody.position.y }
+    var dx: CGFloat { ballPhysicsBody.velocity.dx }
+    var dy: CGFloat { ballPhysicsBody.velocity.dy }
+
     init(position: CGPoint, velocity: CGVector) {
-        self.ballPhysicsBody = BallPhysicsBody(position: position, velocity: velocity, radius: Ball.ballRadius)
+        self.ballPhysicsBody = BallPhysicsBody(position: position, velocity: velocity, radius: Ball.radius)
+    }
+    
+    func reverseVx() {
+        ballPhysicsBody.reverseVx()
     }
     
     
-    func getPosition() -> CGPoint {
-        return ballPhysicsBody.position
-    }
-    
-    
-    func getVelocity() -> CGVector {
-        return ballPhysicsBody.velocity
-    }
-    
-    
-    mutating func reverseVx() -> Ball {
-        ballPhysicsBody = ballPhysicsBody.reverseVx()
-        return self
-    }
-    
-    
-    mutating func reverseVy() -> Ball {
-        ballPhysicsBody = ballPhysicsBody.reverseVy()
-        return self
+    func reverseVy() {
+        ballPhysicsBody.reverseVy()
     }
 
-
-    mutating func setVelocity(_ velocity: CGVector) -> Ball {
-        ballPhysicsBody = ballPhysicsBody.setVelocity(velocity)
-        return self
+    func setPosition(_ position: CGPoint) {
+        ballPhysicsBody.setPosition(position)
     }
-
-
-    func getImageName() -> String {
-        return Constants.ImageName.BALL
+    
+    func setVelocity(_ velocity: CGVector) {
+        ballPhysicsBody.setVelocity(velocity)
     }
 }

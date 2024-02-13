@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct BallView: View {
-    static let ballRadius: CGFloat = 25
-    static var ballSize: CGFloat { ballRadius * 2 }
-    @ObservedObject var gameVM: GameVM
+    var gameVM: GameVM
     var ball: Ball
 
     var body: some View {
-        Image(ball.getImageName())
+        Image(Constants.ImageName.BALL)
             .resizable()
-            .frame(width: BallView.ballSize, height: BallView.ballSize)
-            .position(ball.getPosition())
+            .frame(width: Ball.size, height: Ball.size)
+            .position(ball.position)
     }
 }

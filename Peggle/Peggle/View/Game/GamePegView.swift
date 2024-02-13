@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamePegView: View {
-    @ObservedObject var gameVM: GameVM
+    var gameVM: GameVM
     let peg: Peg
     @State var isHit: Bool
 
@@ -19,14 +19,13 @@ struct GamePegView: View {
     }
 
     var body: some View {
-        Image(peg.getImageName())
+        Image(PegView.getImageName(of: peg.color, isHit: peg.isHit))
             .resizable()
-            .frame(width: PegView.pegSize, height: PegView.pegSize)
-            .position(peg.getPosition())
-            .onReceive(gameVM.objectWillChange) { _ in
-                isHit = peg.isHit
-            }
-//            .opacity(peg.isHidden ? 0 : 1)
-//            .opacity(gameVM.isHidingProcess ? 0 : 1)
+            .frame(width: peg.size, height: peg.size)
+            .position(peg.position)
+//            .onReceive(gameVM.objectWillChange) { _ in
+//                isHit = peg.isHit
+//            }
+            .opacity(peg.isHidden ? 0 : 1)
     }
 }

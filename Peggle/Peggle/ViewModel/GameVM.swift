@@ -1,102 +1,75 @@
 //
-//  GameVM.swift
+//  GameViewVM.swift
 //  Peggle
 //
-//  Created by proglab on 7/2/24.
+//  Created by proglab on 13/2/24.
 //
 
 import SwiftUI
 
-class GameVM: ObservableObject {
-    @Published private var level = Level()
-    @Published private var ball: Ball?
-//    @Published var isHidingProcess = false
+@Observable
+class GameVM {
+    private(set) var level = Level()
+    private(set) var ball: Ball?
+    private(set) var isBallInPlay = false
+    var pegs: [Peg] { level.pegs }
 
-    private let magnitude = 30.0
-    private let frameDuration = 0.50
-    private let origin: CGPoint
+    private static let frameDuration: CGFloat = 0.50
+    private static let gravity: CGFloat = 2 // Downwards is positive
+    private static let dampingFactor: CGFloat = 0.995
+    private static let coefficientOfRestitution: CGFloat = 0.995
 
-    @Published private var isBallInPlay = false
     private var displayLink: CADisplayLink!
 
     init(level: Level) {
         self.level = level
-        origin = level.getOrigin()
         initDisplayLink()
     }
-
 
     private func initDisplayLink() {
         displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: .current, forMode: .default)
     }
 
-
     @objc private func update() {
-        guard var currentBall = ball else { return }
-        currentBall = PhysicsEngine.getBallWithNextPositionAndVelocity(ball: currentBall, frameDuration: frameDuration)
-        currentBall = PhysicsEngine.updateBallBounceWithWall(ball: currentBall, size: level.getSize())
-        let pegs = level.getPegs()
-        for peg in pegs {
-            if !peg.isHidden && peg.isCollidingWith(currentBall) {
-                let newVelocity = PhysicsEngine.calculateCollisionNewVelocity(currentBall, peg)
-                currentBall = currentBall.setVelocity(newVelocity)
-                level.hitPeg(peg)
+        guard ball != nil else { return }
+        PhysicsEngine.updateBallNextFrame(ball: ball!, frameDuration: GameVM.frameDuration, gravity: GameVM.gravity, dampingFactor: GameVM.dampingFactor)
+        PhysicsEngine.updateBallBounceWithWall(ball: ball!, size: level.boardSize)
+        
+        for peg in level.pegs {
+            if !peg.isHidden && peg.isCollidingWith(ball!) {
+                let newVelocity = PhysicsEngine.calculateCollisionNewVelocity(ball: ball!, peg: peg, coefficientOfRestitution: GameVM.coefficientOfRestitution)
+                ball!.setVelocity(newVelocity)
+                peg.hit()
                 break
             }
         }
-        ball = currentBall
+        
         if checkIfBallOut() {
             ball = nil
             isBallInPlay = false
+            level.hideHitPegs()
 //            withAnimation(.easeInOut(duration: 1.0)) {
-//                isHidingProcess = true
-                level.hideHitPegs()
-//                isHidingProcess = false
 //            }
         }
     }
     
     func startLevel(_ levelName: String) {
-        guard let level: Level = LevelManager.loadLevel(levelName: levelName) else { return }
+        guard let level: Level = LevelManager.loadLevel(levelName) else { return }
         self.level = level
     }
 
-
     func shootBall(at tapLocation: CGPoint) {
-        if !isBallInPlay {
-            let initialVelocity = PhysicsEngine.getInitialVelocity(tapLocation, origin, magnitude: magnitude)
-            let initialPosition = CGPoint(x: level.getOrigin().x, y: level.getOrigin().y + Ball.ballRadius + 10)
-            let initialBall = Ball(position: initialPosition, velocity: initialVelocity)
-            ball = initialBall
-            isBallInPlay = true
-        }
+        guard !isBallInPlay else { return }
+        let ballInitialPosition = CGPoint(x: level.boardSize.width / 2, y: Ball.radius)
+        let ballInitialVelocity = PhysicsEngine.getInitialVelocity(tapLocation, ballInitialPosition, speed: Ball.initialSpeed)
+        ball = Ball(position: ballInitialPosition, velocity: ballInitialVelocity)
+        isBallInPlay = true
     }
-
 
     func checkIfBallOut() -> Bool {
         return isBallInPlay
             && ball != nil
-            && ball!.getPosition().y >= level.getSize().height
-    }
-
-
-    func getBall() -> Ball? {
-        return ball
-    }
-
-
-    func getLevelSize() -> CGSize {
-        return level.getSize()
-    }
-
-
-    func getGamePegs() -> [Peg] {
-        return level.getPegs()
-    }
-
-
-    func ballInPlay() -> Bool {
-        return isBallInPlay
+            && ball!.y >= level.boardSize.height + Ball.radius
     }
 }
