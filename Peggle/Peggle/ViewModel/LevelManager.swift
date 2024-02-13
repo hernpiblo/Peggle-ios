@@ -64,7 +64,7 @@ class LevelManager {
             return []
         }
     }
-    
+
     private static func checkLevelNameExist(_ levelName: String) -> Bool {
         return listAllLevels().contains(levelName)
     }

@@ -33,25 +33,37 @@ class GameVM {
 
     @objc private func update() {
         guard ball != nil else { return }
-        PhysicsEngine.updateBallNextFrame(ball: ball!, frameDuration: GameVM.frameDuration, gravity: GameVM.gravity, dampingFactor: GameVM.dampingFactor)
-        PhysicsEngine.updateBallBounceWithWall(ball: ball!, size: level.boardSize)
-        
+        PhysicsEngine.updateBallNextFrame(
+            ball: ball!,
+            frameDuration: GameVM.frameDuration,
+            gravity: GameVM.gravity,
+            dampingFactor: GameVM.dampingFactor
+        )
+        PhysicsEngine.updateBallBounceWithWall(
+            ball: ball!,
+            size: level.boardSize
+        )
+
         for peg in level.pegs {
             if !peg.isHidden && peg.isCollidingWith(ball!) {
-                let newVelocity = PhysicsEngine.calculateCollisionNewVelocity(ball: ball!, peg: peg, coefficientOfRestitution: GameVM.coefficientOfRestitution)
+                let newVelocity = PhysicsEngine.calculateCollisionNewVelocity(
+                    ball: ball!,
+                    peg: peg,
+                    coefficientOfRestitution: GameVM.coefficientOfRestitution
+                )
                 ball!.setVelocity(newVelocity)
                 peg.hit()
                 break
             }
         }
-        
+
         if checkIfBallOut() {
             ball = nil
             isBallInPlay = false
             level.hideHitPegs()
         }
     }
-    
+
     func startLevel(_ levelName: String) {
         guard let level: Level = LevelManager.loadLevel(levelName) else { return }
         self.level = level
@@ -60,7 +72,10 @@ class GameVM {
     func shootBall(at tapLocation: CGPoint) {
         guard !isBallInPlay else { return }
         let ballInitialPosition = CGPoint(x: level.boardSize.width / 2, y: Ball.radius)
-        let ballInitialVelocity = PhysicsEngine.getInitialVelocity(tapLocation, ballInitialPosition, speed: Ball.initialSpeed)
+        let ballInitialVelocity = PhysicsEngine.getInitialVelocity(
+            tapLocation, ballInitialPosition,
+            speed: Ball.initialSpeed
+        )
         ball = Ball(position: ballInitialPosition, velocity: ballInitialVelocity)
         isBallInPlay = true
     }

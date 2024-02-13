@@ -29,7 +29,7 @@ struct PhysicsEngine {
         let newY = ball.y + displacementY
         let newPosition = CGPoint(x: newX, y: newY)
         ball.setPosition(newPosition)
-        
+
         // Velocity (v = u + at)
         let newVelocityX = ball.dx * dampingFactor
         let newVelocityY = ball.dy * dampingFactor + gravity * frameDuration
@@ -46,12 +46,12 @@ struct PhysicsEngine {
     }
 
     static func updateBallBounceWithObject(ball: Ball, pegs: [Peg], coefficientOfRestitution: CGFloat) {
-        for peg in pegs {
-            if peg.isCollidingWith(ball) {
-                let newVelocity = calculateCollisionNewVelocity(ball: ball, peg: peg, coefficientOfRestitution: coefficientOfRestitution)
-                ball.setVelocity(newVelocity)
-                break
-            }
+        for peg in pegs where peg.isCollidingWith(ball) {
+            let newVelocity = calculateCollisionNewVelocity(
+                ball: ball, peg: peg, coefficientOfRestitution: coefficientOfRestitution
+            )
+            ball.setVelocity(newVelocity)
+            break
         }
     }
 
@@ -60,13 +60,15 @@ struct PhysicsEngine {
         // Calculate collision normal vector
         let normalVector = CGVector(dx: peg.x - ball.x, dy: peg.y - ball.y)
         let normalUnitVector = CGVector(dx: normalVector.dx / distance, dy: normalVector.dy / distance)
-        
+
         let velocityAlongNormal = ball.dx * normalUnitVector.dx + ball.dy * normalUnitVector.dy
-        
+
         // use elastic colilsion formula to calculate
-        let finalVelocity = CGVector(dx: ball.dx - 2 * velocityAlongNormal * normalUnitVector.dx * coefficientOfRestitution,
-                                     dy: ball.dy - 2 * velocityAlongNormal * normalUnitVector.dy * coefficientOfRestitution)
-        
+        let finalVelocity = CGVector(
+            dx: ball.dx - 2 * velocityAlongNormal * normalUnitVector.dx * coefficientOfRestitution,
+            dy: ball.dy - 2 * velocityAlongNormal * normalUnitVector.dy * coefficientOfRestitution
+        )
+
         return finalVelocity
     }
 

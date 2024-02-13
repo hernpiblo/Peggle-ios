@@ -29,7 +29,6 @@ struct GameView: View {
     }
 }
 
-
 private struct BackgroundView: View {
     var gameVM: GameVM
 
@@ -44,7 +43,6 @@ private struct BackgroundView: View {
             }
     }
 }
-
 
 private struct GamePegsView: View {
     var gameVM: GameVM

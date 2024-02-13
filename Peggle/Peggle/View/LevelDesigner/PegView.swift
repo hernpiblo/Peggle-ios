@@ -43,11 +43,11 @@ struct PegView: View {
                 dragOffset = .zero
             }
     }
-    
+
     private func getImageName() -> String {
         return PegView.getImageName(of: peg.color, isHit: peg.isHit)
     }
-    
+
     static func getImageName(of color: PegColor, isHit: Bool) -> String {
         switch color {
         case .blue:

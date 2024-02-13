@@ -13,7 +13,6 @@ extension CGPoint: Hashable {
         hasher.combine(y)
     }
 
-
     func distance(to point: CGPoint) -> CGFloat {
         return sqrt(pow((point.x - x), 2) + pow((point.y - y), 2))
     }

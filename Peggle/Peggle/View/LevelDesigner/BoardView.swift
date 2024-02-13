@@ -24,7 +24,7 @@ struct BoardView: View {
                 PegsView(levelDesignerVM: levelDesignerVM,
                          isEraseMode: $isEraseMode)
             }
-            .onAppear{ levelDesignerVM.setSize(geo.size) }
+            .onAppear { levelDesignerVM.setSize(geo.size) }
         }
     }
 }
@@ -51,7 +51,6 @@ private struct BackgroundView: View {
         levelDesignerVM.addPeg(at: tapLocation, radius: currentPegRadius, color: currentColor)
     }
 }
-
 
 private struct PegsView: View {
     var levelDesignerVM: LevelDesignerVM

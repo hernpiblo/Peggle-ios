@@ -11,7 +11,7 @@ import SwiftUI
 class LevelDesignerVM {
     private(set) var level = Level()
     var pegs: [Peg] { level.pegs }
-    
+
     // === Peg ===
     func addPeg(at position: CGPoint, radius: CGFloat, color: PegColor) {
         let peg = Peg(position: position, radius: radius, color: color)
@@ -41,11 +41,11 @@ class LevelDesignerVM {
         self.level = level
         return true
     }
-    
+
     func setName(_ name: String) {
         level.setName(name)
     }
-    
+
     func setSize(_ size: CGSize) {
         level.setSize(size)
     }

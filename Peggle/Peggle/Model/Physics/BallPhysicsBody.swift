@@ -12,7 +12,7 @@ class BallPhysicsBody {
     private(set) var position: CGPoint
     private(set) var velocity: CGVector
     private(set) var radius: CGFloat
-    
+
     init(position: CGPoint, velocity: CGVector, radius: CGFloat) {
         self.position = position
         self.velocity = velocity
@@ -30,7 +30,7 @@ class BallPhysicsBody {
     func setPosition(_ position: CGPoint) {
         self.position = position
     }
-    
+
     func setVelocity(_ velocity: CGVector) {
         self.velocity = velocity
     }

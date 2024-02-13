@@ -23,7 +23,6 @@ struct SelectorsView: View {
     }
 }
 
-
 private struct SelectorButton: View {
     @Binding var currentColor: PegColor
     let pegColor: PegColor
@@ -47,7 +46,6 @@ private struct SelectorButton: View {
         }
     }
 }
-
 
 private struct EraserButton: View {
     @Binding var currentColor: PegColor

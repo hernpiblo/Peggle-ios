@@ -23,12 +23,11 @@ class Ball {
     init(position: CGPoint, velocity: CGVector) {
         self.ballPhysicsBody = BallPhysicsBody(position: position, velocity: velocity, radius: Ball.radius)
     }
-    
+
     func reverseVx() {
         ballPhysicsBody.reverseVx()
     }
-    
-    
+
     func reverseVy() {
         ballPhysicsBody.reverseVy()
     }
@@ -36,7 +35,7 @@ class Ball {
     func setPosition(_ position: CGPoint) {
         ballPhysicsBody.setPosition(position)
     }
-    
+
     func setVelocity(_ velocity: CGVector) {
         ballPhysicsBody.setVelocity(velocity)
     }

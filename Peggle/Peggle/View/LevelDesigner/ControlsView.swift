@@ -49,7 +49,6 @@ struct ControlsView: View {
     }
 }
 
-
 private struct LevelNameTextBox: View {
     @Binding var levelName: String
 
@@ -62,7 +61,6 @@ private struct LevelNameTextBox: View {
             )
     }
 }
-
 
 private struct SaveButton: View {
     var levelDesignerVM: LevelDesignerVM
@@ -88,7 +86,6 @@ private struct SaveButton: View {
         .padding()
     }
 }
-
 
 private struct LoadButton: View {
     var levelDesignerVM: LevelDesignerVM
@@ -117,7 +114,6 @@ private struct LoadButton: View {
     }
 }
 
-
 private struct ResetButton: View {
     var levelDesignerVM: LevelDesignerVM
     @Binding var levelName: String
@@ -132,7 +128,6 @@ private struct ResetButton: View {
         .padding()
     }
 }
-
 
 private struct StartButton: View {
     @Binding var levelName: String
@@ -154,7 +149,6 @@ private struct StartButton: View {
 //        .frame(width: 80, height: 80)
     }
 }
-
 
 private struct Alerts: View {
     @Binding var isLevelNameBlank: Bool
