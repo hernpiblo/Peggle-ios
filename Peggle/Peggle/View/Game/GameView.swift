@@ -11,21 +11,60 @@ struct GameView: View {
     var gameVM: GameVM
 
     var body: some View {
-        VStack {
-            GeometryReader { _ in
-                ZStack {
-                    BackgroundView(gameVM: gameVM)
-                    GamePegsView(gameVM: gameVM)
-                    if gameVM.isBallInPlay && gameVM.ball != nil {
-                        BallView(gameVM: gameVM, ball: gameVM.ball!)
-                    }
-                }
-            }
-            .frame(width: gameVM.level.boardSize.width,
-                   height: gameVM.level.boardSize.height)
-            Spacer() // TODO: Add headers
+        VStack(spacing: 0) {
+            HeaderView(gameVM: gameVM)
+            MainGameView(gameVM: gameVM)
+            TitleView(gameVM: gameVM)
         }
         .ignoresSafeArea()
+    }
+}
+
+private struct HeaderView: View {
+    @Bindable var gameVM: GameVM
+
+    var body: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text("Points")
+                    .font(.system(size: 30))
+                Text("\(gameVM.points)")
+                    .font(.system(size: 60))
+                    .fontWeight(.bold)
+            }
+            Spacer()
+            Spacer()
+            VStack {
+                Text("Balls remaining")
+                    .font(.system(size: 30))
+                Text("\(gameVM.numBalls)")
+                    .font(.system(size: 60))
+                    .fontWeight(.bold)
+            }
+            Spacer()
+        }
+        .frame(minHeight: 0, maxHeight: .infinity)
+        .foregroundColor(.white)
+        .background(.cyan)
+    }
+}
+
+private struct MainGameView: View {
+    @Bindable var gameVM: GameVM
+
+    var body: some View {
+        GeometryReader { _ in
+            ZStack {
+                BackgroundView(gameVM: gameVM)
+                GamePegsView(gameVM: gameVM)
+                if gameVM.isBallInPlay && gameVM.ball != nil {
+                    BallView(gameVM: gameVM, ball: gameVM.ball!)
+                }
+            }
+        }
+        .frame(width: gameVM.level.boardSize.width,
+               height: gameVM.level.boardSize.height)
     }
 }
 
@@ -54,12 +93,27 @@ private struct GamePegsView: View {
     }
 }
 
+private struct TitleView: View {
+    @Bindable var gameVM: GameVM
+
+    var body: some View {
+        Text(gameVM.level.name)
+            .font(.largeTitle)
+            .fontWeight(.bold)
+            .foregroundColor(Color.white)
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.brown)
+    }
+}
+
 #Preview {
     GameView(gameVM: GameVM(level:
         Level(pegs: [Peg(position: CGPoint(x: 200, y: 200),
                          radius: Ball.radius, color: .blue),
                      Peg(position: CGPoint(x: 500, y: 700),
                          radius: Ball.radius, color: .orange)],
-              name: "Preview",
-              boardSize: CGSize(width: 820.0, height: 932.0))))
+              name: "Level 1",
+              boardSize: CGSize(width: 820.0, height: 932.0)),
+              numBalls: 10))
 }

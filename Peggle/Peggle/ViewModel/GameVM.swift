@@ -15,6 +15,8 @@ class GameVM {
     var pegs: [Peg] { level.pegs }
     private var autoHideBenchmarkPositions: Queue<CGPoint> = Queue()
     private var currentTimeElapsed: CGFloat = 0
+    private (set) var numBalls: Int
+    private (set) var points: Int = 0
 
     private static let frameDuration: CGFloat = 0.50
     private static let gravity: CGFloat = 1.5 // Downwards is positive
@@ -24,8 +26,9 @@ class GameVM {
 
     private var displayLink: CADisplayLink!
 
-    init(level: Level) {
+    init(level: Level, numBalls: Int) {
         self.level = level
+        self.numBalls = numBalls
         initDisplayLink()
     }
 
@@ -50,13 +53,18 @@ class GameVM {
             ball: ball!,
             frameDuration: GameVM.frameDuration,
             gravity: GameVM.gravity,
-            dampingFactor: GameVM.dampingFactor
+            dampingFactor: GameVM.dampingFactor,
+            velocityThreshold: 0
         )
     }
 
     private func updateWallBounce() {
         guard ball != nil else { return }
         PhysicsEngine.updateBallBounceWithWall(
+            ball: ball!,
+            size: level.boardSize
+        )
+        PhysicsEngine.penetrationResolutionWall(
             ball: ball!,
             size: level.boardSize
         )
@@ -72,7 +80,7 @@ class GameVM {
                     coefficientOfRestitution: GameVM.coefficientOfRestitution
                 )
                 ball!.setVelocity(newVelocity)
-                PhysicsEngine.penetrationResolution(move: ball!, awayFrom: peg)
+                PhysicsEngine.penetrationResolutionPeg(move: ball!, awayFrom: peg)
                 peg.hit()
             }
         }

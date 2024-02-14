@@ -43,7 +43,8 @@ struct PeggleApp: App {
                                  Peg(position: CGPoint(x: 150, y: 800), radius: Ball.radius, color: .orange),
                                  Peg(position: CGPoint(x: 100, y: 800), radius: Ball.radius, color: .orange),
                                  Peg(position: CGPoint(x: 050, y: 800), radius: Ball.radius, color: .orange)
-                            ], name: "Preview", boardSize: CGSize(width: 820.0, height: 932.0))))
+                                ], name: "Preview", boardSize: CGSize(width: 820.0, height: 932.0)),
+                                    numBalls: 10))
         }
     }
 }

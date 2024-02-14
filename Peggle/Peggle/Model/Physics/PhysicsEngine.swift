@@ -21,19 +21,25 @@ struct PhysicsEngine {
         return velocity
     }
 
-    static func updateBallNextFrame(ball: Ball, frameDuration: CGFloat, gravity: CGFloat, dampingFactor: CGFloat) {
+    static func updateBallNextFrame(ball: Ball, frameDuration: CGFloat, gravity: CGFloat,
+                                    dampingFactor: CGFloat, velocityThreshold: CGFloat) {
         // Displacement (s = ut + 0.5at2)
-        let displacementX = ball.dx * frameDuration
-        let displacementY = ball.dy * frameDuration + 0.5 * gravity * pow(frameDuration, 2)
-        let newX = ball.x + displacementX
-        let newY = ball.y + displacementY
-        let newPosition = CGPoint(x: newX, y: newY)
-        ball.setPosition(newPosition)
+        if ball.dx != 0 && ball.dy != 0 {
+            let displacementX = ball.dx * frameDuration
+            let displacementY = ball.dy * frameDuration + 0.5 * gravity * pow(frameDuration, 2)
+            let newX = ball.x + displacementX
+            let newY = ball.y + displacementY
+            let newPosition = CGPoint(x: newX, y: newY)
+            ball.setPosition(newPosition)
+        }
 
         // Velocity (v = u + at)
         let newVelocityX = ball.dx * dampingFactor
         let newVelocityY = ball.dy * dampingFactor + gravity * frameDuration
-        let newVelocity = CGVector(dx: newVelocityX, dy: newVelocityY)
+        var newVelocity = CGVector(dx: newVelocityX, dy: newVelocityY)
+        if abs(newVelocityX) < velocityThreshold && abs(newVelocityY) < velocityThreshold {
+            newVelocity = CGVector()
+        }
         ball.setVelocity(newVelocity)
     }
 
@@ -42,6 +48,16 @@ struct PhysicsEngine {
             ball.reverseVx()
         } else if ball.y - Ball.radius <= 0 {
             ball.reverseVy()
+        }
+    }
+
+    static func penetrationResolutionWall(ball: Ball, size: CGSize) {
+        if ball.x - Ball.radius <= 0 {
+            ball.setPosition(CGPoint(x: Ball.radius, y: ball.y))
+        } else if ball.x - Ball.radius >= size.width {
+            ball.setPosition(CGPoint(x: size.width - Ball.radius, y: ball.y))
+        } else if ball.y - Ball.radius <= 0 {
+            ball.setPosition(CGPoint(x: ball.x, y: Ball.radius))
         }
     }
 
@@ -71,7 +87,7 @@ struct PhysicsEngine {
         return finalVelocity
     }
 
-    static func penetrationResolution(move ball: Ball, awayFrom peg: Peg) {
+    static func penetrationResolutionPeg(move ball: Ball, awayFrom peg: Peg) {
         let distance = ball.position.distance(to: peg.position)
         let overlap = Ball.radius + peg.radius - distance
 
