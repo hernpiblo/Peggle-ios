@@ -51,7 +51,6 @@ struct PhysicsEngine {
                 ball: ball, peg: peg, coefficientOfRestitution: coefficientOfRestitution
             )
             ball.setVelocity(newVelocity)
-            break
         }
     }
 
@@ -72,19 +71,17 @@ struct PhysicsEngine {
         return finalVelocity
     }
 
-//    static func penetrationResolution(move ball: Ball, awayFrom peg: Peg) {
-//        let distance = ball.position.distance(to: peg.position)
-//        let overlap = Ball.radius + peg.radius - distance
-//        
-//        if overlap > 0 {
-//            let directionVector = CGVector(dx: peg.x - ball.x,
-//                                           dy: peg.y - ball.y)
-//            let normalizedDirection = CGVector(dx: directionVector.dx / distance,
-//                                               dy: directionVector.dy / distance)
-//            
-//            let newBallPosition = CGPoint(x: ball.x + normalizedDirection.dx * overlap,
-//                                          y: ball.y + normalizedDirection.dy * overlap)
-//            ball.setPosition(newBallPosition)
-//        }
-//    }
+    static func penetrationResolution(move ball: Ball, awayFrom peg: Peg) {
+        let distance = ball.position.distance(to: peg.position)
+        let overlap = Ball.radius + peg.radius - distance
+
+        if overlap > 0 {
+            let normalizedDirection = CGVector(dx: ball.dx / distance,
+                                               dy: ball.dy / distance)
+
+            let newBallPosition = CGPoint(x: ball.x + normalizedDirection.dx * overlap,
+                                          y: ball.y + normalizedDirection.dy * overlap)
+            ball.setPosition(newBallPosition)
+        }
+    }
 }

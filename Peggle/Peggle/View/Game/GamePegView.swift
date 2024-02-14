@@ -22,6 +22,6 @@ struct GamePegView: View {
             .frame(width: peg.size, height: peg.size)
             .position(peg.position)
             .opacity(peg.isHidden ? 0 : 1)
-            .animation(.easeOut(duration: 1.5), value: peg.isHidden)
+            .animation(.easeOut(duration: 1.0), value: peg.isHidden)
     }
 }

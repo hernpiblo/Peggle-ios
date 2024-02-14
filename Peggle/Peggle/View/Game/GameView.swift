@@ -56,13 +56,10 @@ private struct GamePegsView: View {
 
 #Preview {
     GameView(gameVM: GameVM(level:
-                                Level(pegs: [Peg(
-                                    position: CGPoint(x: 200, y: 200),
-                                    radius: Ball.radius, color: .blue
-                                ),
-                                             Peg(
-                                                position: CGPoint(x: 500, y: 700),
-                                                radius: Ball.radius, color: .orange
-                                             )], name: "Preview",
-                                      boardSize: CGSize(width: 820.0, height: 932.0))))
+        Level(pegs: [Peg(position: CGPoint(x: 200, y: 200),
+                         radius: Ball.radius, color: .blue),
+                     Peg(position: CGPoint(x: 500, y: 700),
+                         radius: Ball.radius, color: .orange)],
+              name: "Preview",
+              boardSize: CGSize(width: 820.0, height: 932.0))))
 }
