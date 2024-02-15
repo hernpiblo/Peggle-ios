@@ -23,6 +23,7 @@ class GameVM {
     private static let dampingFactor: CGFloat = 0.995 // Lower = more air resistance
     private static let coefficientOfRestitution: CGFloat = 0.95 // Lower = less bouncy
     private static let minDurationToAutoHide: CGFloat = 300.0
+    private static let velocityThreshold: CGFloat = 0
 
     private var displayLink: CADisplayLink!
 
@@ -54,7 +55,7 @@ class GameVM {
             frameDuration: GameVM.frameDuration,
             gravity: GameVM.gravity,
             dampingFactor: GameVM.dampingFactor,
-            velocityThreshold: 0
+            velocityThreshold: GameVM.velocityThreshold
         )
     }
 
