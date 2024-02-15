@@ -47,6 +47,7 @@ struct ControlsView: View {
         }
         .padding(20)
         .frame(minWidth: 0, maxWidth: .infinity)
+        .background(.white)
     }
 }
 
@@ -142,7 +143,6 @@ private struct StartButton: View {
     var body: some View {
         NavigationLink(Constants.ButtonText.START) {
             GameView(gameVM: GameVM(level: level, numBalls: 10))
-//                .navigationBarBackButtonHidden()
         }
         .onAppear { isSavedOrLoaded = false }
         .disabled(!isSavedOrLoaded)

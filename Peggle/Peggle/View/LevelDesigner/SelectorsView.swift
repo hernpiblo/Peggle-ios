@@ -20,6 +20,7 @@ struct SelectorsView: View {
             EraserButton(currentColor: $currentColor, isEraseMode: $isEraseMode)
         }
         .padding(20)
+        .background(.white)
     }
 }
 

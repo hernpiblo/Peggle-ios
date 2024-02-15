@@ -14,6 +14,7 @@
 		E6828C0B2B7E0FF4003F462E /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C072B7E0FF4003F462E /* LevelManager.swift */; };
 		E6828C0C2B7E0FF4003F462E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C082B7E0FF4003F462E /* Constants.swift */; };
 		E6828C0D2B7E0FF4003F462E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C092B7E0FF4003F462E /* Extensions.swift */; };
+		E6828C102B7E133C003F462E /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C0F2B7E133C003F462E /* GameEngine.swift */; };
 		E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */; };
 		E6A676262B72921800FD303A /* PhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676252B72921800FD303A /* PhysicsEngine.swift */; };
 		E6A6762B2B7348A500FD303A /* StaticBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6762A2B7348A500FD303A /* StaticBody.swift */; };
@@ -80,6 +81,7 @@
 		E6828C072B7E0FF4003F462E /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		E6828C082B7E0FF4003F462E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E6828C092B7E0FF4003F462E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E6828C0F2B7E133C003F462E /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		E6A676252B72921800FD303A /* PhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsEngine.swift; sourceTree = "<group>"; };
 		E6A6762A2B7348A500FD303A /* StaticBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticBody.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				E6A6763F2B7A645E00FD303A /* Peg.swift */,
 				E6A676412B7A697600FD303A /* Level.swift */,
 				E6A676452B7A7D6000FD303A /* Ball.swift */,
+				E6828C0F2B7E133C003F462E /* GameEngine.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				E6A676312B7389C100FD303A /* GameView.swift in Sources */,
 				E6A676422B7A697600FD303A /* Level.swift in Sources */,
 				E6828C0A2B7E0FF4003F462E /* Queue.swift in Sources */,
+				E6828C102B7E133C003F462E /* GameEngine.swift in Sources */,
 				E6A676402B7A645E00FD303A /* Peg.swift in Sources */,
 				E6A6762F2B7374C800FD303A /* BallPhysicsBody.swift in Sources */,
 				E68038BC2B6B2F7E00B419FA /* PegColorEnum.swift in Sources */,
