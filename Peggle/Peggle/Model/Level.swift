@@ -31,9 +31,10 @@ class Level: Codable {
     }
 
     // === Pegs ===
-    func addPeg(_ peg: Peg) -> Bool {
+    func addPeg(_ peg: Peg, cannonSize: CGFloat) -> Bool {
         guard isPegInView(peg) else { return false }
         guard !isPegOverlapping(peg, ignore: nil) else { return false }
+        guard isPegOutsideCannon(peg, cannonSize: cannonSize) else { return false }
         pegs.append(peg)
         return true
     }
@@ -52,15 +53,26 @@ class Level: Codable {
         return false
     }
 
+    private func isPegOutsideCannon(_ peg: Peg, cannonSize: CGFloat) -> Bool {
+        let cannonPos = CGPoint(x: boardSize.width / 2, y: 45)
+        if peg.x + Peg.defaultRadius > cannonPos.x - cannonSize / 2
+            && peg.x - Peg.defaultRadius < cannonPos.x + cannonSize / 2
+            && peg.y - Peg.defaultRadius < cannonPos.y + cannonSize / 2 {
+            return false
+        }
+        return true
+    }
+
     func removePeg(_ peg: Peg) {
         pegs.removeAll(where: { $0 == peg })
     }
 
-    func updatePegPosition(_ peg: Peg, with dragOffset: CGSize) {
+    func updatePegPosition(_ peg: Peg, with dragOffset: CGSize, cannonSize: CGFloat) {
         guard let index = pegs.firstIndex(of: peg) else { return }
         let pegIfMoved = pegs[index].getIfMoved(with: dragOffset)
         guard isPegInView(pegIfMoved) else { return }
         guard !isPegOverlapping(pegIfMoved, ignore: peg) else { return }
+        guard isPegOutsideCannon(pegIfMoved, cannonSize: cannonSize) else { return }
         peg.updatePosition(with: dragOffset)
     }
 

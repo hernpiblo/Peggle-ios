@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PegView: View {
     var levelDesignerVM: LevelDesignerVM
+    let cannonSize: CGFloat
     @Binding var isEraseMode: Bool
     @Binding var isSavedOrLoaded: Bool
     @State private var dragOffset: CGSize = .zero
@@ -42,7 +43,7 @@ struct PegView: View {
                 dragOffset = value.translation
             }
             .onEnded { value in
-                levelDesignerVM.updatePegPosition(peg, value.translation)
+                levelDesignerVM.updatePegPosition(peg, value.translation, cannonSize: cannonSize)
                 dragOffset = .zero
                 isSavedOrLoaded = false
             }

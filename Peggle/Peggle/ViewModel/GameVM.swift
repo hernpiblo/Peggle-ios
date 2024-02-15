@@ -15,6 +15,7 @@ class GameVM {
     var pegs: [Peg] { level.pegs }
     private (set) var numBalls: Int
     private (set) var points: Int = 0
+    private (set) var cannonAngle = Angle()
 
     private var gameEngine: GameEngine! // App should not run if game engine is somehow nil
 
@@ -35,11 +36,12 @@ class GameVM {
 
     func shootBall(at tapLocation: CGPoint) {
         guard !isBallInPlay else { return }
-        let ballInitialPosition = CGPoint(x: level.boardSize.width / 2, y: Ball.radius)
+        let ballInitialPosition = CGPoint(x: level.boardSize.width / 2, y: 45)
         let ballInitialVelocity = PhysicsEngine.getInitialVelocity(
             tapLocation, ballInitialPosition,
             speed: Ball.initialSpeed
         )
+        cannonAngle = Angle(radians: Double(atan2(ballInitialVelocity.dy, ballInitialVelocity.dx) - .pi / 2))
         ball = Ball(position: ballInitialPosition, velocity: ballInitialVelocity)
         isBallInPlay = true
     }

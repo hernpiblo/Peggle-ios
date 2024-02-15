@@ -13,17 +13,17 @@ class LevelDesignerVM {
     var pegs: [Peg] { level.pegs }
 
     // === Peg ===
-    func addPeg(at position: CGPoint, radius: CGFloat, color: PegColor) -> Bool {
+    func addPeg(at position: CGPoint, radius: CGFloat, color: PegColor, cannonSize: CGFloat) -> Bool {
         let peg = Peg(position: position, radius: radius, color: color)
-        return level.addPeg(peg)
+        return level.addPeg(peg, cannonSize: cannonSize)
     }
 
     func removePeg(_ peg: Peg) {
         level.removePeg(peg)
     }
 
-    func updatePegPosition(_ peg: Peg, _ dragOffset: CGSize) {
-        level.updatePegPosition(peg, with: dragOffset)
+    func updatePegPosition(_ peg: Peg, _ dragOffset: CGSize, cannonSize: CGFloat) {
+        level.updatePegPosition(peg, with: dragOffset, cannonSize: cannonSize)
     }
 
     // === Level ===

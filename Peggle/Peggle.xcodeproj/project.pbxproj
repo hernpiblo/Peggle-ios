@@ -141,8 +141,8 @@
 		E68038BD2B6B38D300B419FA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E6A6764B2B7A8C6700FD303A /* GameVM.swift */,
 				E6A676472B7A819300FD303A /* LevelDesignerVM.swift */,
+				E6A6764B2B7A8C6700FD303A /* GameVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

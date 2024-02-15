@@ -61,6 +61,7 @@ private struct MainGameView: View {
                 if gameVM.isBallInPlay && gameVM.ball != nil {
                     BallView(gameVM: gameVM, ball: gameVM.ball!)
                 }
+                CannonView(gameVM: gameVM)
             }
         }
         .frame(width: gameVM.level.boardSize.width,
@@ -90,6 +91,19 @@ private struct GamePegsView: View {
         ForEach(gameVM.pegs, id: \.self) { peg in
             GamePegView(gameVM: gameVM, peg: peg)
         }
+    }
+}
+
+private struct CannonView: View {
+    var gameVM: GameVM
+
+    var body: some View {
+        Image(Constants.ImageName.CANNON)
+            .resizable()
+            .frame(width: 100, height: 100)
+            .rotationEffect(gameVM.cannonAngle)
+            .position(x: gameVM.level.boardSize.width / 2,
+                      y: 45)
     }
 }
 
