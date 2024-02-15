@@ -18,7 +18,7 @@ class GameVM {
     private (set) var numBalls: Int
     private (set) var points: Int = 0
 
-    private static let frameDuration: CGFloat = 0.50
+    private static let frameDuration: CGFloat = 0.50 // Lower = slower gameplay
     private static let gravity: CGFloat = 1.5 // Downwards is positive
     private static let dampingFactor: CGFloat = 0.995 // Lower = more air resistance
     private static let coefficientOfRestitution: CGFloat = 0.95 // Lower = less bouncy

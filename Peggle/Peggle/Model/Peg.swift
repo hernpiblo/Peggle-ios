@@ -8,12 +8,15 @@
 import SwiftUI
 
 @Observable
-class Peg: Codable, Equatable, Hashable {
+class Peg: Codable, Equatable, Hashable, Identifiable {
     static let defaultRadius: CGFloat = 25
+
     private let circleStaticBody: CircleStaticBody
+    var id = UUID()
     private(set) var isHit = false
     private(set) var isHidden = false
     private(set) var color: PegColor = .blue
+
     var position: CGPoint { circleStaticBody.position }
     var x: CGFloat { circleStaticBody.position.x }
     var y: CGFloat { circleStaticBody.position.y }
@@ -55,11 +58,13 @@ class Peg: Codable, Equatable, Hashable {
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(circleStaticBody)
+        hasher.combine(id)
         hasher.combine(color)
     }
 
     static func == (lhs: Peg, rhs: Peg) -> Bool {
         return lhs.circleStaticBody == rhs.circleStaticBody
+        && lhs.id == rhs.id
         && lhs.isHit == rhs.isHit
         && lhs.isHidden == rhs.isHidden
         && lhs.color == rhs.color

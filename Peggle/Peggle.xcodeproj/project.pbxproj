@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		E61033F02B7BC35E00626AE8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E61033EF2B7BC35E00626AE8 /* .gitignore */; };
-		E61033F72B7C62D700626AE8 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61033F62B7C62D700626AE8 /* Queue.swift */; };
 		E68038BC2B6B2F7E00B419FA /* PegColorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038BB2B6B2F7E00B419FA /* PegColorEnum.swift */; };
 		E68038C12B6B3BE100B419FA /* LevelDesignerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */; };
-		E68038C72B6BD9F900B419FA /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68038C62B6BD9F900B419FA /* LevelManager.swift */; };
+		E6828C0A2B7E0FF4003F462E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C062B7E0FF4003F462E /* Queue.swift */; };
+		E6828C0B2B7E0FF4003F462E /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C072B7E0FF4003F462E /* LevelManager.swift */; };
+		E6828C0C2B7E0FF4003F462E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C082B7E0FF4003F462E /* Constants.swift */; };
+		E6828C0D2B7E0FF4003F462E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6828C092B7E0FF4003F462E /* Extensions.swift */; };
 		E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */; };
-		E6842CEF2B6F357A0013D0A7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6842CEE2B6F357A0013D0A7 /* Constants.swift */; };
 		E6A676262B72921800FD303A /* PhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676252B72921800FD303A /* PhysicsEngine.swift */; };
 		E6A6762B2B7348A500FD303A /* StaticBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6762A2B7348A500FD303A /* StaticBody.swift */; };
 		E6A6762D2B73492000FD303A /* CircleStaticBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6762C2B73492000FD303A /* CircleStaticBody.swift */; };
@@ -27,7 +28,6 @@
 		E6A676482B7A819300FD303A /* LevelDesignerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676472B7A819300FD303A /* LevelDesignerVM.swift */; };
 		E6A6764A2B7A854500FD303A /* PegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676492B7A854500FD303A /* PegView.swift */; };
 		E6A6764C2B7A8C6700FD303A /* GameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6764B2B7A8C6700FD303A /* GameVM.swift */; };
-		E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE81BE2B69586E00D3E120 /* Extensions.swift */; };
 		E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70C932B60A77D00996E0A /* PeggleApp.swift */; };
 		E6F70C982B60A77F00996E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C972B60A77F00996E0A /* Assets.xcassets */; };
 		E6F70C9C2B60A77F00996E0A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C9B2B60A77F00996E0A /* Preview Assets.xcassets */; };
@@ -74,12 +74,13 @@
 
 /* Begin PBXFileReference section */
 		E61033EF2B7BC35E00626AE8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
-		E61033F62B7C62D700626AE8 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		E68038BB2B6B2F7E00B419FA /* PegColorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegColorEnum.swift; sourceTree = "<group>"; };
 		E68038C02B6B3BE100B419FA /* LevelDesignerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerView.swift; sourceTree = "<group>"; };
-		E68038C62B6BD9F900B419FA /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
+		E6828C062B7E0FF4003F462E /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		E6828C072B7E0FF4003F462E /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
+		E6828C082B7E0FF4003F462E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E6828C092B7E0FF4003F462E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E6842CEC2B6F1E7B0013D0A7 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		E6842CEE2B6F357A0013D0A7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E6A676252B72921800FD303A /* PhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsEngine.swift; sourceTree = "<group>"; };
 		E6A6762A2B7348A500FD303A /* StaticBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticBody.swift; sourceTree = "<group>"; };
 		E6A6762C2B73492000FD303A /* CircleStaticBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleStaticBody.swift; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 		E6A676472B7A819300FD303A /* LevelDesignerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerVM.swift; sourceTree = "<group>"; };
 		E6A676492B7A854500FD303A /* PegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegView.swift; sourceTree = "<group>"; };
 		E6A6764B2B7A8C6700FD303A /* GameVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVM.swift; sourceTree = "<group>"; };
-		E6DE81BE2B69586E00D3E120 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E6F70C902B60A77D00996E0A /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F70C932B60A77D00996E0A /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		E6F70C972B60A77F00996E0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,9 +141,19 @@
 			children = (
 				E6A6764B2B7A8C6700FD303A /* GameVM.swift */,
 				E6A676472B7A819300FD303A /* LevelDesignerVM.swift */,
-				E68038C62B6BD9F900B419FA /* LevelManager.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E6828C0E2B7E0FFF003F462E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E6828C082B7E0FF4003F462E /* Constants.swift */,
+				E6828C092B7E0FF4003F462E /* Extensions.swift */,
+				E6828C072B7E0FF4003F462E /* LevelManager.swift */,
+				E6828C062B7E0FF4003F462E /* Queue.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		E6A676272B73477400FD303A /* Physics */ = {
@@ -193,12 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				E6F70C932B60A77D00996E0A /* PeggleApp.swift */,
-				E6DE81BE2B69586E00D3E120 /* Extensions.swift */,
-				E6842CEE2B6F357A0013D0A7 /* Constants.swift */,
-				E61033F62B7C62D700626AE8 /* Queue.swift */,
 				E6F70CC42B60C10D00996E0A /* Model */,
 				E6F70CC92B60CB7100996E0A /* View */,
 				E68038BD2B6B38D300B419FA /* ViewModel */,
+				E6828C0E2B7E0FFF003F462E /* Util */,
 				E6F70C972B60A77F00996E0A /* Assets.xcassets */,
 				E6F70CC02B60B11100996E0A /* assets */,
 				E6F70CC12B60B11100996E0A /* README.md */,
@@ -423,29 +431,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6828C0D2B7E0FF4003F462E /* Extensions.swift in Sources */,
 				E68038C12B6B3BE100B419FA /* LevelDesignerView.swift in Sources */,
+				E6828C0C2B7E0FF4003F462E /* Constants.swift in Sources */,
 				E6F70CDC2B62443100996E0A /* ControlsView.swift in Sources */,
-				E6DE81BF2B69586E00D3E120 /* Extensions.swift in Sources */,
 				E6A6762B2B7348A500FD303A /* StaticBody.swift in Sources */,
 				E6A6764C2B7A8C6700FD303A /* GameVM.swift in Sources */,
-				E68038C72B6BD9F900B419FA /* LevelManager.swift in Sources */,
+				E6828C0B2B7E0FF4003F462E /* LevelManager.swift in Sources */,
 				E6A676262B72921800FD303A /* PhysicsEngine.swift in Sources */,
 				E6A676352B73A31000FD303A /* GamePegView.swift in Sources */,
 				E6A6764A2B7A854500FD303A /* PegView.swift in Sources */,
 				E6F70CD02B60CF5500996E0A /* SelectorsView.swift in Sources */,
 				E6A676462B7A7D6000FD303A /* Ball.swift in Sources */,
-				E6842CEF2B6F357A0013D0A7 /* Constants.swift in Sources */,
 				E6A676482B7A819300FD303A /* LevelDesignerVM.swift in Sources */,
 				E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */,
 				E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */,
 				E6A676382B73ACCF00FD303A /* BallView.swift in Sources */,
 				E6A676312B7389C100FD303A /* GameView.swift in Sources */,
 				E6A676422B7A697600FD303A /* Level.swift in Sources */,
+				E6828C0A2B7E0FF4003F462E /* Queue.swift in Sources */,
 				E6A676402B7A645E00FD303A /* Peg.swift in Sources */,
 				E6A6762F2B7374C800FD303A /* BallPhysicsBody.swift in Sources */,
 				E68038BC2B6B2F7E00B419FA /* PegColorEnum.swift in Sources */,
 				E6A6762D2B73492000FD303A /* CircleStaticBody.swift in Sources */,
-				E61033F72B7C62D700626AE8 /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,7 +634,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hernpiblo.Peggle;
+				PRODUCT_BUNDLE_IDENTIFIER = hernpiblo.PeggleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -667,7 +675,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hernpiblo.Peggle;
+				PRODUCT_BUNDLE_IDENTIFIER = hernpiblo.PeggleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

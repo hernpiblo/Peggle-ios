@@ -11,18 +11,26 @@ struct LevelDesignerView: View {
     var levelDesignerVM: LevelDesignerVM
     @State private var currentColor: PegColor = .blue
     @State private var isEraseMode = false
+    @State private var isSavedOrLoaded = false
     @State private var currentPegRadius: CGFloat = Peg.defaultRadius
 
     var body: some View {
-        VStack(spacing: 0) {
-            BoardView(levelDesignerVM: levelDesignerVM,
-                      currentColor: $currentColor,
-                      isEraseMode: $isEraseMode,
-                      currentPegRadius: $currentPegRadius)
-            ControlsView(levelDesignerVM: levelDesignerVM)
-            SelectorsView(currentColor: $currentColor, isEraseMode: $isEraseMode)
+        NavigationView {
+            VStack(spacing: 0) {
+                ControlsView(levelDesignerVM: levelDesignerVM,
+                             isSavedOrLoaded: $isSavedOrLoaded)
+                BoardView(levelDesignerVM: levelDesignerVM,
+                          currentColor: $currentColor,
+                          isEraseMode: $isEraseMode,
+                          isSavedOrLoaded: $isSavedOrLoaded,
+                          currentPegRadius: $currentPegRadius)
+                SelectorsView(currentColor: $currentColor,
+                              isEraseMode: $isEraseMode)
+            }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .navigationViewStyle(.stack)
+        .statusBar(hidden: true)
     }
 }
 

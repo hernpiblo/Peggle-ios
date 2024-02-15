@@ -13,9 +13,9 @@ class LevelDesignerVM {
     var pegs: [Peg] { level.pegs }
 
     // === Peg ===
-    func addPeg(at position: CGPoint, radius: CGFloat, color: PegColor) {
+    func addPeg(at position: CGPoint, radius: CGFloat, color: PegColor) -> Bool {
         let peg = Peg(position: position, radius: radius, color: color)
-        level.addPeg(peg)
+        return level.addPeg(peg)
     }
 
     func removePeg(_ peg: Peg) {

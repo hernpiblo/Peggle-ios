@@ -11,7 +11,7 @@ import Foundation
 class Ball {
     static let radius: CGFloat = 25
     static var size: CGFloat { radius * 2 }
-    static let initialSpeed: CGFloat = 15
+    static let initialSpeed: CGFloat = 40
 
     private var ballPhysicsBody: BallPhysicsBody
     var position: CGPoint { ballPhysicsBody.position }

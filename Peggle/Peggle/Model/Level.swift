@@ -31,10 +31,11 @@ class Level: Codable {
     }
 
     // === Pegs ===
-    func addPeg(_ peg: Peg) {
-        guard isPegInView(peg) else { return }
-        guard !isPegOverlapping(peg, ignore: nil) else { return }
+    func addPeg(_ peg: Peg) -> Bool {
+        guard isPegInView(peg) else { return false }
+        guard !isPegOverlapping(peg, ignore: nil) else { return false }
         pegs.append(peg)
+        return true
     }
 
     private func isPegInView(_ peg: Peg) -> Bool {

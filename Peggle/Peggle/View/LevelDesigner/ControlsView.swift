@@ -14,7 +14,7 @@ struct ControlsView: View {
     @State private var isLevelNameBlank = false
     @State private var isEmptyBoard = false
     @State private var saveLevelSuccessful = false
-    @State private var isSavedOrLoaded = false
+    @Binding var isSavedOrLoaded: Bool
 
     var body: some View {
         HStack {
@@ -46,6 +46,7 @@ struct ControlsView: View {
                    levelName: $levelName)
         }
         .padding(20)
+        .frame(minWidth: 0, maxWidth: .infinity)
     }
 }
 
@@ -73,6 +74,7 @@ private struct SaveButton: View {
 
     var body: some View {
         Button(Constants.ButtonText.SAVE) {
+            isSavedOrLoaded = false
             if levelName.isEmpty {
                 isLevelNameBlank = true
             } else if levelDesignerVM.isEmpty() {
@@ -138,15 +140,12 @@ private struct StartButton: View {
     }
 
     var body: some View {
-//        NavigationStack {
-//        Button("START") {
-            NavigationLink(Constants.ButtonText.START) {
-//                GameView(gameVM: GameVM(level: level))
-//                    .navigationBarBackButtonHidden()
-            }.disabled(!isSavedOrLoaded)
-//        }
-            //        .border(Color.black)
-//        .frame(width: 80, height: 80)
+        NavigationLink(Constants.ButtonText.START) {
+            GameView(gameVM: GameVM(level: level, numBalls: 10))
+//                .navigationBarBackButtonHidden()
+        }
+        .onAppear { isSavedOrLoaded = false }
+        .disabled(!isSavedOrLoaded)
     }
 }
 
@@ -175,8 +174,4 @@ private struct Alerts: View {
             })
             .hidden()
     }
-}
-
-#Preview {
-    ControlsView(levelDesignerVM: LevelDesignerVM())
 }

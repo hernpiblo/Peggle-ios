@@ -10,6 +10,7 @@ import SwiftUI
 struct PegView: View {
     var levelDesignerVM: LevelDesignerVM
     @Binding var isEraseMode: Bool
+    @Binding var isSavedOrLoaded: Bool
     @State private var dragOffset: CGSize = .zero
     let peg: Peg
 
@@ -27,10 +28,12 @@ struct PegView: View {
     private func onTap() {
         guard isEraseMode else { return }
         levelDesignerVM.removePeg(peg)
+        isSavedOrLoaded = false
     }
 
     private func onLongPress() {
         levelDesignerVM.removePeg(peg)
+        isSavedOrLoaded = false
     }
 
     private func onDrag() -> _EndedGesture<_ChangedGesture<DragGesture>> {
@@ -41,6 +44,7 @@ struct PegView: View {
             .onEnded { value in
                 levelDesignerVM.updatePegPosition(peg, value.translation)
                 dragOffset = .zero
+                isSavedOrLoaded = false
             }
     }
 
