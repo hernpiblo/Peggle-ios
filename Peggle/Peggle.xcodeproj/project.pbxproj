@@ -26,9 +26,9 @@
 		E6A676402B7A645E00FD303A /* Peg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6763F2B7A645E00FD303A /* Peg.swift */; };
 		E6A676422B7A697600FD303A /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676412B7A697600FD303A /* Level.swift */; };
 		E6A676462B7A7D6000FD303A /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676452B7A7D6000FD303A /* Ball.swift */; };
-		E6A676482B7A819300FD303A /* LevelDesignerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676472B7A819300FD303A /* LevelDesignerVM.swift */; };
+		E6A676482B7A819300FD303A /* LevelDesignerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676472B7A819300FD303A /* LevelDesignerViewModel.swift */; };
 		E6A6764A2B7A854500FD303A /* PegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A676492B7A854500FD303A /* PegView.swift */; };
-		E6A6764C2B7A8C6700FD303A /* GameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6764B2B7A8C6700FD303A /* GameVM.swift */; };
+		E6A6764C2B7A8C6700FD303A /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6764B2B7A8C6700FD303A /* GameViewModel.swift */; };
 		E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F70C932B60A77D00996E0A /* PeggleApp.swift */; };
 		E6F70C982B60A77F00996E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C972B60A77F00996E0A /* Assets.xcassets */; };
 		E6F70C9C2B60A77F00996E0A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F70C9B2B60A77F00996E0A /* Preview Assets.xcassets */; };
@@ -93,9 +93,9 @@
 		E6A6763F2B7A645E00FD303A /* Peg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peg.swift; sourceTree = "<group>"; };
 		E6A676412B7A697600FD303A /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		E6A676452B7A7D6000FD303A /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
-		E6A676472B7A819300FD303A /* LevelDesignerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerVM.swift; sourceTree = "<group>"; };
+		E6A676472B7A819300FD303A /* LevelDesignerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewModel.swift; sourceTree = "<group>"; };
 		E6A676492B7A854500FD303A /* PegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegView.swift; sourceTree = "<group>"; };
-		E6A6764B2B7A8C6700FD303A /* GameVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVM.swift; sourceTree = "<group>"; };
+		E6A6764B2B7A8C6700FD303A /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		E6F70C902B60A77D00996E0A /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F70C932B60A77D00996E0A /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		E6F70C972B60A77F00996E0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 		E68038BD2B6B38D300B419FA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E6A676472B7A819300FD303A /* LevelDesignerVM.swift */,
-				E6A6764B2B7A8C6700FD303A /* GameVM.swift */,
+				E6A676472B7A819300FD303A /* LevelDesignerViewModel.swift */,
+				E6A6764B2B7A8C6700FD303A /* GameViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -439,14 +439,14 @@
 				E6828C0C2B7E0FF4003F462E /* Constants.swift in Sources */,
 				E6F70CDC2B62443100996E0A /* ControlsView.swift in Sources */,
 				E6A6762B2B7348A500FD303A /* StaticBody.swift in Sources */,
-				E6A6764C2B7A8C6700FD303A /* GameVM.swift in Sources */,
+				E6A6764C2B7A8C6700FD303A /* GameViewModel.swift in Sources */,
 				E6828C0B2B7E0FF4003F462E /* LevelManager.swift in Sources */,
 				E6A676262B72921800FD303A /* PhysicsEngine.swift in Sources */,
 				E6A676352B73A31000FD303A /* GamePegView.swift in Sources */,
 				E6A6764A2B7A854500FD303A /* PegView.swift in Sources */,
 				E6F70CD02B60CF5500996E0A /* SelectorsView.swift in Sources */,
 				E6A676462B7A7D6000FD303A /* Ball.swift in Sources */,
-				E6A676482B7A819300FD303A /* LevelDesignerVM.swift in Sources */,
+				E6A676482B7A819300FD303A /* LevelDesignerViewModel.swift in Sources */,
 				E6F70C942B60A77D00996E0A /* PeggleApp.swift in Sources */,
 				E6842CED2B6F1E7B0013D0A7 /* BoardView.swift in Sources */,
 				E6A676382B73ACCF00FD303A /* BallView.swift in Sources */,

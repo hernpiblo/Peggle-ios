@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
-    var gameVM: GameVM
+    var gameVM: GameViewModel
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,7 +21,7 @@ struct GameView: View {
 }
 
 private struct HeaderView: View {
-    @Bindable var gameVM: GameVM
+    @Bindable var gameVM: GameViewModel
 
     var body: some View {
         HStack {
@@ -51,7 +51,7 @@ private struct HeaderView: View {
 }
 
 private struct MainGameView: View {
-    @Bindable var gameVM: GameVM
+    @Bindable var gameVM: GameViewModel
 
     var body: some View {
         GeometryReader { _ in
@@ -70,7 +70,7 @@ private struct MainGameView: View {
 }
 
 private struct BackgroundView: View {
-    var gameVM: GameVM
+    var gameVM: GameViewModel
 
     var body: some View {
         Image(Constants.ImageName.BACKGROUND)
@@ -85,7 +85,7 @@ private struct BackgroundView: View {
 }
 
 private struct GamePegsView: View {
-    var gameVM: GameVM
+    var gameVM: GameViewModel
 
     var body: some View {
         ForEach(gameVM.pegs, id: \.self) { peg in
@@ -95,7 +95,7 @@ private struct GamePegsView: View {
 }
 
 private struct CannonView: View {
-    var gameVM: GameVM
+    var gameVM: GameViewModel
 
     var body: some View {
         Image(Constants.ImageName.CANNON)
@@ -108,7 +108,7 @@ private struct CannonView: View {
 }
 
 private struct TitleView: View {
-    @Bindable var gameVM: GameVM
+    @Bindable var gameVM: GameViewModel
 
     var body: some View {
         Text(gameVM.level.name)
@@ -122,7 +122,7 @@ private struct TitleView: View {
 }
 
 #Preview {
-    GameView(gameVM: GameVM(level:
+    GameView(gameVM: GameViewModel(level:
         Level(pegs: [Peg(position: CGPoint(x: 200, y: 200),
                          radius: Ball.radius, color: .blue),
                      Peg(position: CGPoint(x: 500, y: 700),

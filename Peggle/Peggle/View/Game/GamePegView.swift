@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct GamePegView: View {
-    var gameVM: GameVM
+    var gameVM: GameViewModel
     let peg: Peg
 
-    init(gameVM: GameVM, peg: Peg) {
+    init(gameVM: GameViewModel, peg: Peg) {
         self.gameVM = gameVM
         self.peg = peg
     }

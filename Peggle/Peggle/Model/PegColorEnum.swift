@@ -1,5 +1,5 @@
 //
-//  BallColorEnum.swift
+//  PegColorEnum.swift
 //  Peggle
 //
 //  Created by proglab on 1/2/24.

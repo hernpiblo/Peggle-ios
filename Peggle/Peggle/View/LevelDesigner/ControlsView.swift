@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ControlsView: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     @State private var levelName: String = ""
     @State private var savedLevelNames: [String] = []
     @State private var isLevelNameBlank = false
@@ -65,7 +65,7 @@ private struct LevelNameTextBox: View {
 }
 
 private struct SaveButton: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     @Binding var levelName: String
     @Binding var savedLevelNames: [String]
     @Binding var isLevelNameBlank: Bool
@@ -91,7 +91,7 @@ private struct SaveButton: View {
 }
 
 private struct LoadButton: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     @Binding var levelName: String
     @Binding var savedLevelNames: [String]
     @Binding var isSavedOrLoaded: Bool
@@ -118,7 +118,7 @@ private struct LoadButton: View {
 }
 
 private struct ResetButton: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     @Binding var levelName: String
     @Binding var isSavedOrLoaded: Bool
 
@@ -142,7 +142,7 @@ private struct StartButton: View {
 
     var body: some View {
         NavigationLink(Constants.ButtonText.START) {
-            GameView(gameVM: GameVM(level: level, numBalls: 10))
+            GameView(gameVM: GameViewModel(level: level, numBalls: 10))
         }
         .onAppear { isSavedOrLoaded = false }
         .disabled(!isSavedOrLoaded)

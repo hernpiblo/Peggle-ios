@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BallView: View {
-    var gameVM: GameVM
+    var gameVM: GameViewModel
     var ball: Ball
 
     var body: some View {
