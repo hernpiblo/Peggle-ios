@@ -59,7 +59,8 @@ private struct BackgroundView: View {
 
     private func boardTap(at tapLocation: CGPoint) {
         guard !isEraseMode else { return }
-        let addSuccessful = levelDesignerVM.addPeg(at: tapLocation, radius: currentPegRadius, color: currentColor, cannonSize: cannonSize)
+        let addSuccessful = levelDesignerVM.addPeg(at: tapLocation, radius: currentPegRadius,
+                                                   color: currentColor, cannonSize: cannonSize)
         if addSuccessful { isSavedOrLoaded = false }
     }
 }

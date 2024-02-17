@@ -29,7 +29,7 @@ class CircleStaticBody: StaticBody {
     }
 
     func isOverlapping(with other: CircleStaticBody) -> Bool {
-        return abs(position.x - other.x) < radius + other.radius && abs(position.y - other.y) < radius + other.radius
+        return position.distance(to: other.position) < radius * 2
     }
 
     func isCollidingWith(_ ball: Ball) -> Bool {
