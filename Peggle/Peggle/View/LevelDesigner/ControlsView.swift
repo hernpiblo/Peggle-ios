@@ -11,9 +11,10 @@ struct ControlsView: View {
     var levelDesignerVM: LevelDesignerViewModel
     @State private var levelName: String = ""
     @State private var savedLevelNames: [String] = []
-    @State private var isLevelNameBlank = false
-    @State private var isEmptyBoard = false
-    @State private var saveLevelSuccessful = false
+    @State private var isLevelNameBlankAlert = false
+    @State private var isEmptyBoardAlert = false
+    @State private var isSaveLevelSuccessfulAlert = false
+    @State private var isLevelNameDuplicateAlert = false
     @Binding var isSavedOrLoaded: Bool
 
     var body: some View {
@@ -23,9 +24,10 @@ struct ControlsView: View {
             SaveButton(levelDesignerVM: levelDesignerVM,
                        levelName: $levelName,
                        savedLevelNames: $savedLevelNames,
-                       isLevelNameBlank: $isLevelNameBlank,
-                       isEmptyBoard: $isEmptyBoard,
-                       saveLevelSuccessful: $saveLevelSuccessful,
+                       isLevelNameBlankAlert: $isLevelNameBlankAlert,
+                       isEmptyBoardAlert: $isEmptyBoardAlert,
+                       isSaveLevelSuccessfulAlert: $isSaveLevelSuccessfulAlert,
+                       isLevelNameDuplicateAlert: $isLevelNameDuplicateAlert,
                        isSavedOrLoaded: $isSavedOrLoaded)
 
             LoadButton(levelDesignerVM: levelDesignerVM,
@@ -40,10 +42,14 @@ struct ControlsView: View {
             StartButton(levelName: $levelName,
                         isSavedOrLoaded: $isSavedOrLoaded)
 
-            Alerts(isLevelNameBlank: $isLevelNameBlank,
-                   isEmptyBoard: $isEmptyBoard,
-                   saveLevelSuccessful: $saveLevelSuccessful,
-                   levelName: $levelName)
+            Alerts(levelDesignerVM: levelDesignerVM,
+                   levelName: $levelName,
+                   savedLevelNames: $savedLevelNames,
+                   isLevelNameBlankAlert: $isLevelNameBlankAlert,
+                   isEmptyBoardAlert: $isEmptyBoardAlert,
+                   isSaveLevelSuccessfulAlert: $isSaveLevelSuccessfulAlert,
+                   isLevelNameDuplicateAlert: $isLevelNameDuplicateAlert,
+                   isSavedOrLoaded: $isSavedOrLoaded)
         }
         .padding(20)
         .frame(minWidth: 0, maxWidth: .infinity)
@@ -68,22 +74,25 @@ private struct SaveButton: View {
     var levelDesignerVM: LevelDesignerViewModel
     @Binding var levelName: String
     @Binding var savedLevelNames: [String]
-    @Binding var isLevelNameBlank: Bool
-    @Binding var isEmptyBoard: Bool
-    @Binding var saveLevelSuccessful: Bool
+    @Binding var isLevelNameBlankAlert: Bool
+    @Binding var isEmptyBoardAlert: Bool
+    @Binding var isSaveLevelSuccessfulAlert: Bool
+    @Binding var isLevelNameDuplicateAlert: Bool
     @Binding var isSavedOrLoaded: Bool
 
     var body: some View {
         Button(Constants.ButtonText.SAVE) {
             isSavedOrLoaded = false
             if levelName.isEmpty {
-                isLevelNameBlank = true
+                isLevelNameBlankAlert = true
             } else if levelDesignerVM.isEmpty() {
-                isEmptyBoard = true
+                isEmptyBoardAlert = true
+            } else if LevelManager.listAllLevels().contains(levelName) {
+                isLevelNameDuplicateAlert = true
             } else {
-                saveLevelSuccessful = levelDesignerVM.saveLevel(levelName)
+                isSaveLevelSuccessfulAlert = levelDesignerVM.saveLevel(levelName)
                 savedLevelNames = LevelManager.listAllLevels()
-                isSavedOrLoaded = saveLevelSuccessful
+                isSavedOrLoaded = isSaveLevelSuccessfulAlert
             }
         }
         .padding()
@@ -150,28 +159,42 @@ private struct StartButton: View {
 }
 
 private struct Alerts: View {
-    @Binding var isLevelNameBlank: Bool
-    @Binding var isEmptyBoard: Bool
-    @Binding var saveLevelSuccessful: Bool
+    var levelDesignerVM: LevelDesignerViewModel
     @Binding var levelName: String
+    @Binding var savedLevelNames: [String]
+    @Binding var isLevelNameBlankAlert: Bool
+    @Binding var isEmptyBoardAlert: Bool
+    @Binding var isSaveLevelSuccessfulAlert: Bool
+    @Binding var isLevelNameDuplicateAlert: Bool
+    @Binding var isSavedOrLoaded: Bool
 
     var body: some View {
         Text("")
-            .alert(isPresented: $isLevelNameBlank, content: {
+            .alert(isPresented: $isLevelNameBlankAlert, content: {
                 Alert(title: Text("Level name cannot be blank"))
             })
             .hidden()
 
         Text("")
-            .alert(isPresented: $isEmptyBoard, content: {
+            .alert(isPresented: $isEmptyBoardAlert, content: {
                 Alert(title: Text("Place at least 1 peg"))
             })
             .hidden()
 
         Text("")
-            .alert(isPresented: $saveLevelSuccessful, content: {
+            .alert(isPresented: $isSaveLevelSuccessfulAlert, content: {
                 Alert(title: Text("Level - \"\(levelName)\" saved!"))
             })
             .hidden()
+
+        Text("")
+            .alert("Level name already exist", isPresented: $isLevelNameDuplicateAlert) {
+                Button("Overwrite") {
+                    isSaveLevelSuccessfulAlert = levelDesignerVM.saveLevel(levelName)
+                    savedLevelNames = LevelManager.listAllLevels()
+                    isSavedOrLoaded = isSaveLevelSuccessfulAlert
+                }
+                Button("Cancel", role: .cancel) {}
+            }
     }
 }
