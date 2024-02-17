@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol StaticBody: Hashable, Codable {
+protocol StaticBody: Saveable, Hashable {
     var position: CGPoint { get }
     func isCollidingWith(_ ball: Ball) -> Bool
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class Peg: Codable, Equatable, Hashable, Identifiable {
+class Peg: Saveable, Equatable, Hashable, Identifiable {
     static let defaultRadius: CGFloat = 25
 
     private let circleStaticBody: CircleStaticBody

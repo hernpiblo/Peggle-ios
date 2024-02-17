@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PegColor: CaseIterable, Codable {
+enum PegColor: Saveable, CaseIterable {
     case blue
     case orange
 }

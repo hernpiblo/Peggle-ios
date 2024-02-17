@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class Level: Codable {
+class Level: Saveable {
     private(set) var pegs: [Peg]
     private(set) var name: String
     private(set) var boardSize: CGSize
