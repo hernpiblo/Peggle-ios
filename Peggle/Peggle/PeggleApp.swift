@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct PeggleApp: App {
-    @State var levelDesignerVM = LevelDesignerVM()
+    @State var levelDesignerVM = LevelDesignerViewModel()
 
     var body: some Scene {
         WindowGroup {

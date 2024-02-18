@@ -14,7 +14,6 @@ class LevelManager {
             let data = try encoder.encode(level)
             let fileURL = getFileURL(level.name)
             try data.write(to: fileURL)
-            print("Successfully saved level \(level.name)")
             return true
         } catch {
             print("Error saving level \(level.name): \(error.localizedDescription)")
@@ -29,7 +28,6 @@ class LevelManager {
             let decoder = JSONDecoder()
             do {
                 let level: Level = try decoder.decode(Level.self, from: data)
-                print("Successfully loaded level \(level.name)")
                 return level
             } catch {
                 print("Error decoding level \(levelName): \(error.localizedDescription)")
@@ -44,7 +42,6 @@ class LevelManager {
         let fileURL = getFileURL(levelName)
         do {
             try FileManager.default.removeItem(at: fileURL)
-            print("Successfully deleted level \(levelName)")
         } catch {
             print("Error deleting level file \(levelName): \(error.localizedDescription)")
         }

@@ -1,5 +1,5 @@
 //
-//  GameViewVM.swift
+//  GameViewViewModel.swift
 //  Peggle
 //
 //  Created by proglab on 13/2/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class GameVM {
+class GameViewModel {
     private(set) var level = Level()
     private(set) var ball: Ball?
     private(set) var isBallInPlay = false

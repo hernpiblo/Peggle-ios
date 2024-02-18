@@ -15,14 +15,14 @@ class GameEngine {
     private static let minDurationToAutoHide: CGFloat = 300.0
     private static let velocityThreshold: CGFloat = 0
 
-    private var gameVM: GameVM
+    private var gameVM: GameViewModel
     private var ball: Ball? { gameVM.ball }
 
     private var displayLink: CADisplayLink!
     private var autoHideBenchmarkPositions: Queue<CGPoint> = Queue()
     private var currentTimeElapsed: CGFloat = 0
 
-    init(gameVM: GameVM) {
+    init(gameVM: GameViewModel) {
         self.gameVM = gameVM
         initDisplayLink()
     }

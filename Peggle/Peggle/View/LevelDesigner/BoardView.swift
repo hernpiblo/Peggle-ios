@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BoardView: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     let cannonSize: CGFloat = 100
     @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
@@ -40,7 +40,7 @@ struct BoardView: View {
 
 private struct BackgroundView: View {
     var geo: GeometryProxy
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     let cannonSize: CGFloat
     @Binding var currentColor: PegColor
     @Binding var isEraseMode: Bool
@@ -59,13 +59,14 @@ private struct BackgroundView: View {
 
     private func boardTap(at tapLocation: CGPoint) {
         guard !isEraseMode else { return }
-        let addSuccessful = levelDesignerVM.addPeg(at: tapLocation, radius: currentPegRadius, color: currentColor, cannonSize: cannonSize)
+        let addSuccessful = levelDesignerVM.addPeg(at: tapLocation, radius: currentPegRadius,
+                                                   color: currentColor, cannonSize: cannonSize)
         if addSuccessful { isSavedOrLoaded = false }
     }
 }
 
 private struct PegsView: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     let cannonSize: CGFloat
     @Binding var isEraseMode: Bool
     @Binding var isSavedOrLoaded: Bool
@@ -82,7 +83,7 @@ private struct PegsView: View {
 }
 
 private struct StaticCannonView: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     let cannonSize: CGFloat
     var boardSize: CGSize
 

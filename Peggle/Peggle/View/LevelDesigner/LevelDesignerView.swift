@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LevelDesignerView: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     @State private var currentColor: PegColor = .blue
     @State private var isEraseMode = false
     @State private var isSavedOrLoaded = false
@@ -35,5 +35,5 @@ struct LevelDesignerView: View {
 }
 
 #Preview {
-    LevelDesignerView(levelDesignerVM: LevelDesignerVM())
+    LevelDesignerView(levelDesignerVM: LevelDesignerViewModel())
 }

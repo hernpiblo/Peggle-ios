@@ -1,5 +1,5 @@
 //
-//  LevelDesignerVM.swift
+//  LevelDesignerViewModel.swift
 //  Peggle
 //
 //  Created by proglab on 13/2/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class LevelDesignerVM {
+class LevelDesignerViewModel {
     private(set) var level = Level()
     var pegs: [Peg] { level.pegs }
 

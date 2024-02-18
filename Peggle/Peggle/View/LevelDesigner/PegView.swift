@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PegView: View {
-    var levelDesignerVM: LevelDesignerVM
+    var levelDesignerVM: LevelDesignerViewModel
     let cannonSize: CGFloat
     @Binding var isEraseMode: Bool
     @Binding var isSavedOrLoaded: Bool
